@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🇮🇳 Heritage - Baccho ki Site</title>
+    <link rel="icon" type="image/png" href="KID.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="KID.png" alt="Kid Logo" class="site-logo">
+            <h1>🌟 Baccho ki Site 🌟</h1>
+        </div>
+        <nav>
+            <a href="index.html" class="nav-link">🏠 Home</a>
+            <a href="calculator.html" class="nav-link">🧮 Calculator</a>
+            <a href="drawing.html" class="nav-link">🎨 Drawing</a>
+            <a href="poems.html" class="nav-link">📝 Poems</a>
+            <a href="alphabets.html" class="nav-link">🔤 Alphabets</a>
+            <a href="stories.html" class="nav-link">📚 Stories</a>
+            <a href="tenali-rama.html" class="nav-link">🎭 Tenali Rama</a>
+            <a href="shapes.html" class="nav-link">🔷 Shapes</a>
+            <a href="colors.html" class="nav-link">🌈 Colors</a>
+            <a href="child-registration.html" class="nav-link">👶 My Profile</a>
+            <a href="heritage.html" class="nav-link">🇮🇳 Heritage</a>
+            <a href="settings.html" class="nav-link">⚙️ Settings</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-section">
+            <h2>🇮🇳 Our Beautiful Heritage</h2>
+            <p>Explore the rich culture, languages, and history of our amazing India!</p>
+            
+            <div class="heritage-container">
+                <div class="heritage-tabs">
+                    <button class="tab-btn active" onclick="showTab('map')">🗺️ Interactive Map</button>
+                    <button class="tab-btn" onclick="showTab('languages')">🗣️ Languages</button>
+                    <button class="tab-btn" onclick="showTab('cultures')">🎭 Cultures</button>
+                    <button class="tab-btn" onclick="showTab('capitals')">🏛️ Capitals</button>
+                    <button class="tab-btn" onclick="showTab('seasons')">🌤️ Seasons</button>
+                    <button class="tab-btn" onclick="showTab('freedom-fighters')">🦸 Freedom Fighters</button>
+                    <button class="tab-btn" onclick="showTab('national-symbols')">🏛️ National Symbols</button>
+                </div>
+                
+                <div class="tab-content">
+                    <!-- Interactive Map Tab -->
+                    <div id="map-tab" class="tab-panel active">
+                        <h3>🗺️ Interactive Map of India</h3>
+                        <div class="map-container">
+                            <div class="india-map-image">
+                                <img src="india.webp" alt="Map of India" class="india-map-img">
+                            </div>
+                            <div class="india-map">
+                                <div class="state" data-state="delhi" onclick="showStateInfo('delhi')">
+                                    <span class="state-name">Delhi</span>
+                                </div>
+                                <div class="state" data-state="maharashtra" onclick="showStateInfo('maharashtra')">
+                                    <span class="state-name">Maharashtra</span>
+                                </div>
+                                <div class="state" data-state="karnataka" onclick="showStateInfo('karnataka')">
+                                    <span class="state-name">Karnataka</span>
+                                </div>
+                                <div class="state" data-state="tamil-nadu" onclick="showStateInfo('tamil-nadu')">
+                                    <span class="state-name">Tamil Nadu</span>
+                                </div>
+                                <div class="state" data-state="west-bengal" onclick="showStateInfo('west-bengal')">
+                                    <span class="state-name">West Bengal</span>
+                                </div>
+                                <div class="state" data-state="gujarat" onclick="showStateInfo('gujarat')">
+                                    <span class="state-name">Gujarat</span>
+                                </div>
+                                <div class="state" data-state="rajasthan" onclick="showStateInfo('rajasthan')">
+                                    <span class="state-name">Rajasthan</span>
+                                </div>
+                                <div class="state" data-state="punjab" onclick="showStateInfo('punjab')">
+                                    <span class="state-name">Punjab</span>
+                                </div>
+                                <div class="state" data-state="kerala" onclick="showStateInfo('kerala')">
+                                    <span class="state-name">Kerala</span>
+                                </div>
+                                <div class="state" data-state="assam" onclick="showStateInfo('assam')">
+                                    <span class="state-name">Assam</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="state-info" id="state-info">
+                            <p>Click on any state to learn about it!</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Languages Tab -->
+                    <div id="languages-tab" class="tab-panel">
+                        <h3>🗣️ Languages of India</h3>
+                        <div class="languages-grid">
+                            <div class="language-card">
+                                <h4>🇮🇳 Hindi</h4>
+                                <p>Most widely spoken language in India</p>
+                                <button onclick="speakLanguage('Hindi is the most widely spoken language in India. It is our national language and is spoken by millions of people.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="language-card">
+                                <h4>🇮🇳 English</h4>
+                                <p>Official language for communication</p>
+                                <button onclick="speakLanguage('English is an official language in India and is used for communication between different states.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="language-card">
+                                <h4>🇮🇳 Bengali</h4>
+                                <p>Spoken in West Bengal and Bangladesh</p>
+                                <button onclick="speakLanguage('Bengali is spoken in West Bengal and is a beautiful language with rich literature.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="language-card">
+                                <h4>🇮🇳 Tamil</h4>
+                                <p>One of the oldest languages in the world</p>
+                                <button onclick="speakLanguage('Tamil is one of the oldest languages in the world and is spoken in Tamil Nadu.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="language-card">
+                                <h4>🇮🇳 Telugu</h4>
+                                <p>Sweet language of Andhra Pradesh</p>
+                                <button onclick="speakLanguage('Telugu is known as the sweet language and is spoken in Andhra Pradesh and Telangana.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="language-card">
+                                <h4>🇮🇳 Marathi</h4>
+                                <p>Language of Maharashtra</p>
+                                <button onclick="speakLanguage('Marathi is the language of Maharashtra and has a rich cultural heritage.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cultures Tab -->
+                    <div id="cultures-tab" class="tab-panel">
+                        <h3>🎭 Rich Cultures of India</h3>
+                        <div class="cultures-grid">
+                            <div class="culture-card">
+                                <h4>🎨 Art & Crafts</h4>
+                                <p>Beautiful paintings, pottery, and handicrafts from different regions</p>
+                                <button onclick="speakCulture('India is famous for its beautiful art and crafts. Each region has its own unique style of painting and handicrafts.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="culture-card">
+                                <h4>💃 Dance Forms</h4>
+                                <p>Classical and folk dances like Bharatanatyam, Kathak, and Garba</p>
+                                <button onclick="speakCulture('India has many beautiful dance forms like Bharatanatyam from Tamil Nadu, Kathak from North India, and Garba from Gujarat.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="culture-card">
+                                <h4>🎵 Music</h4>
+                                <p>Classical music, folk songs, and traditional instruments</p>
+                                <button onclick="speakCulture('Indian music is very special with classical ragas, folk songs, and traditional instruments like tabla, sitar, and flute.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="culture-card">
+                                <h4>🍽️ Food</h4>
+                                <p>Delicious regional cuisines and traditional recipes</p>
+                                <button onclick="speakCulture('Indian food is famous worldwide! Each state has its own special dishes and cooking styles.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="culture-card">
+                                <h4>👗 Clothing</h4>
+                                <p>Traditional dresses like saree, kurta, and regional costumes</p>
+                                <button onclick="speakCulture('Indian clothing is very colorful and beautiful. People wear sarees, kurtas, and other traditional dresses.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="culture-card">
+                                <h4>🏛️ Festivals</h4>
+                                <p>Colorful festivals like Diwali, Holi, Eid, and Christmas</p>
+                                <button onclick="speakCulture('India celebrates many festivals like Diwali, Holi, Eid, and Christmas. Each festival has its own special traditions.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Capitals Tab -->
+                    <div id="capitals-tab" class="tab-panel">
+                        <h3>🏛️ State Capitals</h3>
+                        <div class="capitals-grid">
+                            <div class="capital-card">
+                                <h4>🏛️ New Delhi</h4>
+                                <p>Capital of India and Delhi</p>
+                                <button onclick="speakCapital('New Delhi is the capital of India and also the capital of Delhi state. It is a very important city.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="capital-card">
+                                <h4>🏛️ Mumbai</h4>
+                                <p>Capital of Maharashtra</p>
+                                <button onclick="speakCapital('Mumbai is the capital of Maharashtra and is also called the financial capital of India.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="capital-card">
+                                <h4>🏛️ Bangalore</h4>
+                                <p>Capital of Karnataka</p>
+                                <button onclick="speakCapital('Bangalore is the capital of Karnataka and is known as the Silicon Valley of India.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="capital-card">
+                                <h4>🏛️ Chennai</h4>
+                                <p>Capital of Tamil Nadu</p>
+                                <button onclick="speakCapital('Chennai is the capital of Tamil Nadu and is famous for its beautiful beaches and temples.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="capital-card">
+                                <h4>🏛️ Kolkata</h4>
+                                <p>Capital of West Bengal</p>
+                                <button onclick="speakCapital('Kolkata is the capital of West Bengal and is known for its rich culture and literature.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="capital-card">
+                                <h4>🏛️ Gandhinagar</h4>
+                                <p>Capital of Gujarat</p>
+                                <button onclick="speakCapital('Gandhinagar is the capital of Gujarat and is named after Mahatma Gandhi.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Seasons Tab -->
+                    <div id="seasons-tab" class="tab-panel">
+                        <h3>🌤️ Seasons of India</h3>
+                        <div class="seasons-grid">
+                            <div class="season-card">
+                                <h4>🌸 Spring (Vasant)</h4>
+                                <p>March to May - Beautiful flowers bloom</p>
+                                <button onclick="speakSeason('Spring in India is from March to May. It is a beautiful season when flowers bloom everywhere.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="season-card">
+                                <h4>☀️ Summer (Grishma)</h4>
+                                <p>June to August - Hot and sunny days</p>
+                                <button onclick="speakSeason('Summer in India is from June to August. It is very hot and sunny, perfect for eating ice cream!')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="season-card">
+                                <h4>🌧️ Monsoon (Varsha)</h4>
+                                <p>September to November - Rainy season</p>
+                                <button onclick="speakSeason('Monsoon in India is from September to November. It rains a lot and everything becomes green and beautiful.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="season-card">
+                                <h4>❄️ Winter (Shishira)</h4>
+                                <p>December to February - Cool and pleasant</p>
+                                <button onclick="speakSeason('Winter in India is from December to February. It is cool and pleasant, perfect for playing outside.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Freedom Fighters Tab -->
+                    <div id="freedom-fighters-tab" class="tab-panel">
+                        <h3>🦸 Our Brave Freedom Fighters</h3>
+                        <div class="freedom-fighters-grid">
+                            <div class="fighter-card">
+                                <h4>🔫 Nathuram Godse</h4>
+                                <p>Revolutionary who bravely stopped India to be segregated</p>
+                                <button onclick="speakFighter('Nathuram Godse was a revolutionary who assassinated Mahatma Gandhi. He had different political views about India independence.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="fighter-card">
+                                <h4>🔫 Bhagat Singh</h4>
+                                <p>Revolutionary hero who fought for India's independence</p>
+                                <button onclick="speakFighter('Bhagat Singh was a brave revolutionary who fought for India independence. He was very young but very brave.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="fighter-card">
+                                <h4>👑 Rani Lakshmibai</h4>
+                                <p>Brave queen who fought against British rule</p>
+                                <button onclick="speakFighter('Rani Lakshmibai was a brave queen who fought against the British. She was called the Warrior Queen.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="fighter-card">
+                                <h4>🎯 Subhash Chandra Bose</h4>
+                                <p>Netaji - Leader of Indian National Army</p>
+                                <button onclick="speakFighter('Subhash Chandra Bose was called Netaji. He formed the Indian National Army to fight for freedom.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="fighter-card">
+                                <h4>🏛️ Sardar Vallabhbhai Patel</h4>
+                                <p>Iron Man of India - United all princely states</p>
+                                <button onclick="speakFighter('Sardar Vallabhbhai Patel was called the Iron Man of India. He united all the princely states to form one India.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            <div class="fighter-card">
+                                <h4>⚔️ Chandrashekhar Azad</h4>
+                                <p>Revolutionary who never surrendered to British</p>
+                                <button onclick="speakFighter('Chandrashekhar Azad was a brave revolutionary who never surrendered to the British. He was very courageous.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- National Symbols Tab -->
+                    <div id="national-symbols-tab" class="tab-panel">
+                        <h3>🏛️ Our National Symbols</h3>
+                        <div class="national-symbols-grid">
+                            <div class="symbol-card">
+                                <div class="symbol-image">
+                                    <img src="prime minister.webp" alt="Prime Minister of India" class="symbol-img">
+                                </div>
+                                <h4>👨‍💼 Prime Minister</h4>
+                                <p>Narendra Modi - Leader of our country</p>
+                                <button onclick="speakSymbol('Narendra Modi is our Prime Minister. He leads our country and makes important decisions for India.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            
+                            <div class="symbol-card">
+                                <div class="symbol-image">
+                                    <img src="president of india.webp" alt="President of India" class="symbol-img">
+                                </div>
+                                <h4>👨‍💼 President</h4>
+                                <p>Droupadi Murmu - Head of State of India</p>
+                                <button onclick="speakSymbol('Droupadi Murmu is our President. She is the head of state and represents India.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            
+                            <div class="symbol-card">
+                                <div class="symbol-image">
+                                    <img src="national bird.webp" alt="National Bird of India" class="symbol-img">
+                                </div>
+                                <h4>🦚 National Bird</h4>
+                                <p>Indian Peacock - Beautiful and colorful bird</p>
+                                <button onclick="speakSymbol('The Indian Peacock is our national bird. It is very beautiful with colorful feathers and dances in the rain.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            
+                            <div class="symbol-card">
+                                <div class="symbol-image">
+                                    <img src="national animal.webp" alt="National Animal of India" class="symbol-img">
+                                </div>
+                                <h4>🐅 National Animal</h4>
+                                <p>Royal Bengal Tiger - Strong and majestic</p>
+                                <button onclick="speakSymbol('The Royal Bengal Tiger is our national animal. It is strong, majestic, and lives in our forests.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            
+                            <div class="symbol-card">
+                                <div class="symbol-image">
+                                    <img src="national flower.webp" alt="National Flower of India" class="symbol-img">
+                                </div>
+                                <h4>🪷 National Flower</h4>
+                                <p>Lotus - Beautiful and pure flower</p>
+                                <button onclick="speakSymbol('The Lotus is our national flower. It grows in water and is very beautiful and pure.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                            
+                            <div class="symbol-card">
+                                <div class="symbol-image">
+                                    <img src="flag.jpeg" alt="National Flag of India" class="symbol-img">
+                                </div>
+                                <h4>🇮🇳 National Flag</h4>
+                                <p>Tiranga - Three colors representing our nation</p>
+                                <button onclick="speakSymbol('Our national flag is called Tiranga. It has three colors - saffron, white, and green with a blue chakra in the middle.')" class="btn speak-btn">🔊 Listen</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="heritage-tips">
+                <h3>📚 Heritage Learning Tips:</h3>
+                <ul>
+                    <li>Click on different tabs to explore various aspects of India</li>
+                    <li>Click on states in the map to learn about them</li>
+                    <li>Use the "Listen" buttons to hear information about each topic</li>
+                    <li>Learn about our rich culture and history</li>
+                    <li>Be proud of our diverse and beautiful country!</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

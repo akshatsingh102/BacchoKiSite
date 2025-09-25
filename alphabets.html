@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔤 Alphabets - Baccho ki Site</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="KID.png">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="KID.png" alt="Kid Logo" class="site-logo">
+            <h1>🌟 Baccho ki Site 🌟</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link">🏠 Home</a>
+            <a href="calculator.html" class="nav-link">🧮 Calculator</a>
+            <a href="drawing.html" class="nav-link">🎨 Drawing</a>
+            <a href="poems.html" class="nav-link">📝 Poems</a>
+            <a href="alphabets.html" class="nav-link active">🔤 Alphabets</a>
+            <a href="stories.html" class="nav-link">👑 Stories</a>
+            <a href="tenali-rama.html" class="nav-link">😄 Tenali Rama</a>
+            <a href="shapes.html" class="nav-link">🔷 Shapes</a>
+            <a href="colors.html" class="nav-link">🌈 Colors</a>
+            <a href="settings.html" class="nav-link">⚙️ Settings</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-section">
+            <h2>🔤 Learn Alphabets</h2>
+            <p>Click on any letter to hear how it sounds! Learn both English and Hindi alphabets.</p>
+            
+            <div class="alphabets-container">
+                <div class="alphabet-section">
+                    <h3>🌟 English Alphabets (A-Z)</h3>
+                    <div class="alphabet-grid">
+                        <span class="letter" onclick="speakLetter('A')">A</span>
+                        <span class="letter" onclick="speakLetter('B')">B</span>
+                        <span class="letter" onclick="speakLetter('C')">C</span>
+                        <span class="letter" onclick="speakLetter('D')">D</span>
+                        <span class="letter" onclick="speakLetter('E')">E</span>
+                        <span class="letter" onclick="speakLetter('F')">F</span>
+                        <span class="letter" onclick="speakLetter('G')">G</span>
+                        <span class="letter" onclick="speakLetter('H')">H</span>
+                        <span class="letter" onclick="speakLetter('I')">I</span>
+                        <span class="letter" onclick="speakLetter('J')">J</span>
+                        <span class="letter" onclick="speakLetter('K')">K</span>
+                        <span class="letter" onclick="speakLetter('L')">L</span>
+                        <span class="letter" onclick="speakLetter('M')">M</span>
+                        <span class="letter" onclick="speakLetter('N')">N</span>
+                        <span class="letter" onclick="speakLetter('O')">O</span>
+                        <span class="letter" onclick="speakLetter('P')">P</span>
+                        <span class="letter" onclick="speakLetter('Q')">Q</span>
+                        <span class="letter" onclick="speakLetter('R')">R</span>
+                        <span class="letter" onclick="speakLetter('S')">S</span>
+                        <span class="letter" onclick="speakLetter('T')">T</span>
+                        <span class="letter" onclick="speakLetter('U')">U</span>
+                        <span class="letter" onclick="speakLetter('V')">V</span>
+                        <span class="letter" onclick="speakLetter('W')">W</span>
+                        <span class="letter" onclick="speakLetter('X')">X</span>
+                        <span class="letter" onclick="speakLetter('Y')">Y</span>
+                        <span class="letter" onclick="speakLetter('Z')">Z</span>
+                    </div>
+                </div>
+                
+                <div class="alphabet-section">
+                    <h3>🌙 Hindi Vowels (स्वर) - आ से अं</h3>
+                    <div class="alphabet-grid hindi">
+                        <span class="letter" onclick="speakLetter('आ')">आ</span>
+                        <span class="letter" onclick="speakLetter('इ')">इ</span>
+                        <span class="letter" onclick="speakLetter('ई')">ई</span>
+                        <span class="letter" onclick="speakLetter('उ')">उ</span>
+                        <span class="letter" onclick="speakLetter('ऊ')">ऊ</span>
+                        <span class="letter" onclick="speakLetter('ऋ')">ऋ</span>
+                        <span class="letter" onclick="speakLetter('ए')">ए</span>
+                        <span class="letter" onclick="speakLetter('ऐ')">ऐ</span>
+                        <span class="letter" onclick="speakLetter('ओ')">ओ</span>
+                        <span class="letter" onclick="speakLetter('औ')">औ</span>
+                        <span class="letter" onclick="speakLetter('अं')">अं</span>
+                        <span class="letter" onclick="speakLetter('अः')">अः</span>
+                    </div>
+                </div>
+                
+                <div class="alphabet-section">
+                    <h3>🌙 Hindi Consonants (व्यंजन) - क से ज्ञ</h3>
+                    <div class="alphabet-grid hindi">
+                        <span class="letter" onclick="speakLetter('क')">क</span>
+                        <span class="letter" onclick="speakLetter('ख')">ख</span>
+                        <span class="letter" onclick="speakLetter('ग')">ग</span>
+                        <span class="letter" onclick="speakLetter('घ')">घ</span>
+                        <span class="letter" onclick="speakLetter('ङ')">ङ</span>
+                        <span class="letter" onclick="speakLetter('च')">च</span>
+                        <span class="letter" onclick="speakLetter('छ')">छ</span>
+                        <span class="letter" onclick="speakLetter('ज')">ज</span>
+                        <span class="letter" onclick="speakLetter('झ')">झ</span>
+                        <span class="letter" onclick="speakLetter('ञ')">ञ</span>
+                        <span class="letter" onclick="speakLetter('ट')">ट</span>
+                        <span class="letter" onclick="speakLetter('ठ')">ठ</span>
+                        <span class="letter" onclick="speakLetter('ड')">ड</span>
+                        <span class="letter" onclick="speakLetter('ढ')">ढ</span>
+                        <span class="letter" onclick="speakLetter('ण')">ण</span>
+                        <span class="letter" onclick="speakLetter('त')">त</span>
+                        <span class="letter" onclick="speakLetter('थ')">थ</span>
+                        <span class="letter" onclick="speakLetter('द')">द</span>
+                        <span class="letter" onclick="speakLetter('ध')">ध</span>
+                        <span class="letter" onclick="speakLetter('न')">न</span>
+                        <span class="letter" onclick="speakLetter('प')">प</span>
+                        <span class="letter" onclick="speakLetter('फ')">फ</span>
+                        <span class="letter" onclick="speakLetter('ब')">ब</span>
+                        <span class="letter" onclick="speakLetter('भ')">भ</span>
+                        <span class="letter" onclick="speakLetter('म')">म</span>
+                        <span class="letter" onclick="speakLetter('य')">य</span>
+                        <span class="letter" onclick="speakLetter('र')">र</span>
+                        <span class="letter" onclick="speakLetter('ल')">ल</span>
+                        <span class="letter" onclick="speakLetter('व')">व</span>
+                        <span class="letter" onclick="speakLetter('श')">श</span>
+                        <span class="letter" onclick="speakLetter('ष')">ष</span>
+                        <span class="letter" onclick="speakLetter('स')">स</span>
+                        <span class="letter" onclick="speakLetter('ह')">ह</span>
+                        <span class="letter" onclick="speakLetter('क्ष')">क्ष</span>
+                        <span class="letter" onclick="speakLetter('त्र')">त्र</span>
+                        <span class="letter" onclick="speakLetter('ज्ञ')">ज्ञ</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="alphabet-tips">
+                <h3>📚 Learning Tips:</h3>
+                <ul>
+                    <li>Click on any letter to hear how it sounds</li>
+                    <li>Practice saying the letters out loud</li>
+                    <li>Try to find letters in words around you</li>
+                    <li>Start with the first few letters and learn gradually</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚙️ Settings - Baccho ki Site</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="KID.png">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="KID.png" alt="Kid Logo" class="site-logo">
+            <h1>🌟 Baccho ki Site 🌟</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link">🏠 Home</a>
+            <a href="calculator.html" class="nav-link">🧮 Calculator</a>
+            <a href="drawing.html" class="nav-link">🎨 Drawing</a>
+            <a href="poems.html" class="nav-link">📝 Poems</a>
+            <a href="alphabets.html" class="nav-link">🔤 Alphabets</a>
+            <a href="stories.html" class="nav-link">👑 Stories</a>
+            <a href="tenali-rama.html" class="nav-link">😄 Tenali Rama</a>
+            <a href="shapes.html" class="nav-link">🔷 Shapes</a>
+            <a href="colors.html" class="nav-link">🌈 Colors</a>
+            <a href="settings.html" class="nav-link active">⚙️ Settings</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="settings-container">
+            <h2>⚙️ Settings</h2>
+            <p>Customize your learning experience with these settings!</p>
+            
+            <div class="settings-grid">
+                <!-- Language Settings -->
+                <div class="settings-card">
+                    <h3>🌍 Language Settings</h3>
+                    <div class="setting-group">
+                        <label for="language-select">Choose Language:</label>
+                        <select id="language-select" class="setting-select">
+                            <option value="hi">🇮🇳 Hindi</option>
+                            <option value="en">🇺🇸 English</option>
+                        </select>
+                    </div>
+                    <div class="setting-description">
+                        <p>Select the language for speech synthesis. Hindi content will automatically use Hindi voice.</p>
+                    </div>
+                </div>
+
+                <!-- Voice Settings -->
+                <div class="settings-card">
+                    <h3>🎤 Voice Settings</h3>
+                    <div class="setting-group">
+                        <label for="voice-gender">Choose Voice Type:</label>
+                        <select id="voice-gender" class="setting-select">
+                            <option value="male">👨 Male Voice</option>
+                            <option value="female">👩 Female Voice</option>
+                        </select>
+                    </div>
+                    <div class="setting-group">
+                        <label for="voice-speed">Speech Speed:</label>
+                        <input type="range" id="voice-speed" min="0.5" max="1.5" step="0.1" value="0.7" class="setting-slider">
+                        <span id="speed-value">0.7x</span>
+                    </div>
+                    <div class="setting-group">
+                        <label for="voice-pitch">Voice Pitch:</label>
+                        <input type="range" id="voice-pitch" min="0.5" max="2.0" step="0.1" value="1.4" class="setting-slider">
+                        <span id="pitch-value">1.4x</span>
+                    </div>
+                    <div class="setting-description">
+                        <p>Adjust voice characteristics for a comfortable listening experience.</p>
+                    </div>
+                </div>
+
+                <!-- Test Voice -->
+                <div class="settings-card">
+                    <h3>🔊 Test Voice</h3>
+                    <div class="test-voice-section">
+                        <button onclick="testEnglishVoice()" class="btn test-btn">Test English Voice</button>
+                        <button onclick="testHindiVoice()" class="btn test-btn">Test Hindi Voice</button>
+                        <button onclick="stopListening()" class="btn stop-btn" disabled>⏹️ Stop</button>
+                    </div>
+                    <div class="setting-description">
+                        <p>Test your voice settings with sample text in both languages.</p>
+                    </div>
+                </div>
+
+                <!-- Available Voices -->
+                <div class="settings-card">
+                    <h3>🎭 Available Voices</h3>
+                    <div class="voices-list" id="voices-list">
+                        <p>Loading available voices...</p>
+                    </div>
+                    <div class="setting-description">
+                        <p>These are the voices available on your device. The system will automatically choose the best voice based on your language and gender preferences.</p>
+                    </div>
+                </div>
+
+                <!-- Save Settings -->
+                <div class="settings-card">
+                    <h3>💾 Save Settings</h3>
+                    <div class="save-section">
+                        <button onclick="saveSettings()" class="btn save-btn">💾 Save Settings</button>
+                        <button onclick="resetSettings()" class="btn reset-btn">🔄 Reset to Default</button>
+                    </div>
+                    <div class="setting-description">
+                        <p>Your settings will be saved and applied across all pages of the website.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-tips">
+                <h3>⚙️ Settings Tips:</h3>
+                <ul>
+                    <li>Choose your preferred language for the best learning experience</li>
+                    <li>Select male or female voice based on your preference</li>
+                    <li>Adjust speech speed and pitch for comfortable listening</li>
+                    <li>Test your settings before saving to ensure they work well</li>
+                    <li>Settings are automatically applied to all listening features</li>
+                    <li>Hindi content will automatically use Hindi voice regardless of your language setting</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

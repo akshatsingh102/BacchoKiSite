@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 Child Registration - Baccho ki Site</title>
+    <link rel="icon" type="image/png" href="KID.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="KID.png" alt="Kid Logo" class="site-logo">
+            <h1>🌟 Baccho ki Site 🌟</h1>
+        </div>
+        <nav>
+            <a href="index.html" class="nav-link">🏠 Home</a>
+            <a href="calculator.html" class="nav-link">🧮 Calculator</a>
+            <a href="drawing.html" class="nav-link">🎨 Drawing</a>
+            <a href="poems.html" class="nav-link">📝 Poems</a>
+            <a href="alphabets.html" class="nav-link">🔤 Alphabets</a>
+            <a href="stories.html" class="nav-link">📚 Stories</a>
+            <a href="tenali-rama.html" class="nav-link">🎭 Tenali Rama</a>
+            <a href="shapes.html" class="nav-link">🔷 Shapes</a>
+            <a href="colors.html" class="nav-link">🌈 Colors</a>
+            <a href="child-registration.html" class="nav-link">👶 My Profile</a>
+            <a href="heritage.html" class="nav-link">🇮🇳 Heritage</a>
+            <a href="settings.html" class="nav-link">⚙️ Settings</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-section">
+            <h2>👶 Child Registration</h2>
+            <p>Tell us about yourself so we can make your learning experience more personal!</p>
+            
+            <div class="registration-container">
+                <div class="registration-form">
+                    <div class="form-group">
+                        <label for="child-name">👤 Your Name:</label>
+                        <input type="text" id="child-name" placeholder="Enter your name" class="form-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="child-dob">📅 Date of Birth:</label>
+                        <input type="date" id="child-dob" class="form-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>👦👧 Choose Your Gender:</label>
+                        <div class="gender-selection">
+                            <div class="gender-option" onclick="selectGender('boy')">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiByeD0iNTAiIGZpbGw9IiM0RkE1RjUiLz4KPGNpcmNsZSBjeD0iNTAiIGN5PSIzNSIgcj0iMTUiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0yMCA3MEg4MFY5MEgyMFY3MFoiIGZpbGw9IndoaXRlIi8+Cjx0ZXh0IHg9IjUwIiB5PSI2NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzRGRUE1RjUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiPkJveTwvdGV4dD4KPC9zdmc+" alt="Boy" class="gender-image">
+                                <span class="gender-label">BOY</span>
+                            </div>
+                            <div class="gender-option" onclick="selectGender('girl')">
+                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiByeD0iNTAiIGZpbGw9IiNGRjY5QjQiLz4KPGNpcmNsZSBjeD0iNTAiIGN5PSIzNSIgcj0iMTUiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0yMCA3MEg4MFY5MEgyMFY3MFoiIGZpbGw9IndoaXRlIi8+Cjx0ZXh0IHg9IjUwIiB5PSI2NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI0ZGNjlCNCIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCI+R2lybDwvdGV4dD4KPC9zdmc+" alt="Girl" class="gender-image">
+                                <span class="gender-label">GIRL</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="favorite-color">🎨 Favorite Color:</label>
+                        <select id="favorite-color" class="form-select">
+                            <option value="">Choose your favorite color</option>
+                            <option value="red">🔴 Red</option>
+                            <option value="blue">🔵 Blue</option>
+                            <option value="green">🟢 Green</option>
+                            <option value="yellow">🟡 Yellow</option>
+                            <option value="purple">🟣 Purple</option>
+                            <option value="pink">🩷 Pink</option>
+                            <option value="orange">🟠 Orange</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="favorite-subject">📚 Favorite Subject:</label>
+                        <select id="favorite-subject" class="form-select">
+                            <option value="">Choose your favorite subject</option>
+                            <option value="math">🧮 Math</option>
+                            <option value="stories">📚 Stories</option>
+                            <option value="drawing">🎨 Drawing</option>
+                            <option value="poems">📝 Poems</option>
+                            <option value="colors">🌈 Colors</option>
+                            <option value="shapes">🔷 Shapes</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button onclick="saveChildInfo()" class="btn save-btn">💾 Save My Info</button>
+                        <button onclick="clearForm()" class="btn clear-btn">🗑️ Clear</button>
+                    </div>
+                </div>
+                
+                <div class="child-profile" id="child-profile" style="display: none;">
+                    <h3>👶 Your Profile</h3>
+                    <div class="profile-content">
+                        <div class="profile-item">
+                            <span class="profile-label">Name:</span>
+                            <span class="profile-value" id="profile-name"></span>
+                        </div>
+                        <div class="profile-item">
+                            <span class="profile-label">Age:</span>
+                            <span class="profile-value" id="profile-age"></span>
+                        </div>
+                        <div class="profile-item">
+                            <span class="profile-label">Gender:</span>
+                            <span class="profile-value" id="profile-gender"></span>
+                        </div>
+                        <div class="profile-item">
+                            <span class="profile-label">Favorite Color:</span>
+                            <span class="profile-value" id="profile-color"></span>
+                        </div>
+                        <div class="profile-item">
+                            <span class="profile-label">Favorite Subject:</span>
+                            <span class="profile-value" id="profile-subject"></span>
+                        </div>
+                    </div>
+                    <button onclick="editProfile()" class="btn edit-btn">✏️ Edit Profile</button>
+                </div>
+            </div>
+            
+            <div class="registration-tips">
+                <h3>💡 Registration Tips:</h3>
+                <ul>
+                    <li>Fill in your real name so we can personalize your experience</li>
+                    <li>Choose your correct date of birth to see your age</li>
+                    <li>Select your gender by clicking on the BOY or GIRL image</li>
+                    <li>Pick your favorite color and subject for personalized content</li>
+                    <li>You can always edit your information later</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

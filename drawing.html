@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 Drawing Pad - Baccho ki Site</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="KID.png">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="KID.png" alt="Kid Logo" class="site-logo">
+            <h1>🌟 Baccho ki Site 🌟</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link">🏠 Home</a>
+            <a href="calculator.html" class="nav-link">🧮 Calculator</a>
+            <a href="drawing.html" class="nav-link active">🎨 Drawing</a>
+            <a href="poems.html" class="nav-link">📝 Poems</a>
+            <a href="alphabets.html" class="nav-link">🔤 Alphabets</a>
+            <a href="stories.html" class="nav-link">👑 Stories</a>
+            <a href="tenali-rama.html" class="nav-link">😄 Tenali Rama</a>
+            <a href="shapes.html" class="nav-link">🔷 Shapes</a>
+            <a href="colors.html" class="nav-link">🌈 Colors</a>
+            <a href="settings.html" class="nav-link">⚙️ Settings</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-section">
+            <h2>🎨 Drawing Pad</h2>
+            <p>Draw anything you want! Use your mouse to draw and choose different colors.</p>
+            
+            <div class="drawing-container">
+                <canvas id="drawing-canvas" width="800" height="500"></canvas>
+                <div class="drawing-controls">
+                    <div class="control-group">
+                        <button onclick="clearCanvas()" class="btn clear">Clear Drawing</button>
+                        <button onclick="toggleFillMode()" class="btn fill-btn" id="fill-btn">🎨 Fill Mode</button>
+                    </div>
+                    
+                    <div class="color-control">
+                        <input type="color" id="color-picker" value="#000000" onchange="changeColor(this.value)">
+                        <label for="color-picker">Choose Color</label>
+                    </div>
+                    
+                    <div class="brush-controls">
+                        <label for="brush-size">Brush Size:</label>
+                        <input type="range" id="brush-size" min="1" max="30" value="5" onchange="changeBrushSize(this.value)">
+                        <span id="brush-size-display">5</span>
+                    </div>
+                    
+                    <div class="tool-controls">
+                        <button onclick="setTool('draw')" class="btn tool-btn active" id="draw-tool">✏️ Draw</button>
+                        <button onclick="setTool('fill')" class="btn tool-btn" id="fill-tool">🪣 Fill</button>
+                        <button onclick="setTool('eraser')" class="btn tool-btn" id="eraser-tool">🧽 Eraser</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="drawing-tips">
+                <h3>🎨 Drawing Tips:</h3>
+                <ul>
+                    <li>Click and drag to draw with the pencil tool</li>
+                    <li>Use the Fill tool to color inside shapes - click inside any closed area!</li>
+                    <li>The Fill tool only fills the area you click, respecting boundaries</li>
+                    <li>Use the Eraser tool to remove parts of your drawing</li>
+                    <li>Choose different colors from the color picker</li>
+                    <li>Adjust brush size with the slider (1-30)</li>
+                    <li>Click "Clear Drawing" to start over</li>
+                    <li>Works on touch devices too!</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

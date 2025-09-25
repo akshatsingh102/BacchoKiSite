@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📝 Poems - Baccho ki Site</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="KID.png">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="KID.png" alt="Kid Logo" class="site-logo">
+            <h1>🌟 Baccho ki Site 🌟</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link">🏠 Home</a>
+            <a href="calculator.html" class="nav-link">🧮 Calculator</a>
+            <a href="drawing.html" class="nav-link">🎨 Drawing</a>
+            <a href="poems.html" class="nav-link active">📝 Poems</a>
+            <a href="alphabets.html" class="nav-link">🔤 Alphabets</a>
+            <a href="stories.html" class="nav-link">👑 Stories</a>
+            <a href="tenali-rama.html" class="nav-link">😄 Tenali Rama</a>
+            <a href="shapes.html" class="nav-link">🔷 Shapes</a>
+            <a href="colors.html" class="nav-link">🌈 Colors</a>
+            <a href="settings.html" class="nav-link">⚙️ Settings</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-section">
+            <h2>📝 Beautiful Poems</h2>
+            <p>Read these lovely poems and enjoy the beautiful words!</p>
+            
+            <div class="poems-container">
+                <!-- English Poems Section -->
+                <div class="poems-section">
+                    <h3>🌟 English Poems</h3>
+                    
+                    <div class="poem">
+                        <h4>Twinkle, Twinkle, Little Star</h4>
+                        <div class="poem-content">
+                            <p>Twinkle, twinkle, little star,<br>
+                            How I wonder what you are!<br>
+                            Up above the world so high,<br>
+                            Like a diamond in the sky.<br>
+                            Twinkle, twinkle, little star,<br>
+                            How I wonder what you are!</p>
+                        </div>
+                        <div class="poem-controls">
+                            <button onclick="speakPoem('Twinkle, twinkle, little star, How I wonder what you are! Up above the world so high, Like a diamond in the sky. Twinkle, twinkle, little star, How I wonder what you are!')" class="btn speak-btn">🔊 Listen</button>
+                            <button onclick="stopListening()" class="btn stop-btn" disabled>⏹️ Stop</button>
+                        </div>
+                    </div>
+
+                    <div class="poem">
+                        <h4>Pat-a-Cake</h4>
+                        <div class="poem-content">
+                            <p>Pat-a-cake, pat-a-cake, baker's man,<br>
+                            Bake me a cake as fast as you can.<br>
+                            Pat it and prick it and mark it with B,<br>
+                            Put it in the oven for baby and me!</p>
+                        </div>
+                        <div class="poem-controls">
+                            <button onclick="speakPoem('Pat-a-cake, pat-a-cake, baker man, Bake me a cake as fast as you can. Pat it and prick it and mark it with B, Put it in the oven for baby and me!')" class="btn speak-btn">🔊 Listen</button>
+                            <button onclick="stopListening()" class="btn stop-btn" disabled>⏹️ Stop</button>
+                        </div>
+                    </div>
+
+                    <div class="poem">
+                        <h4>London Bridge</h4>
+                        <div class="poem-content">
+                            <p>London Bridge is falling down,<br>
+                            Falling down, falling down.<br>
+                            London Bridge is falling down,<br>
+                            My fair lady!</p>
+                        </div>
+                        <div class="poem-controls">
+                            <button onclick="speakPoem('London Bridge is falling down, Falling down, falling down. London Bridge is falling down, My fair lady!')" class="btn speak-btn">🔊 Listen</button>
+                            <button onclick="stopListening()" class="btn stop-btn" disabled>⏹️ Stop</button>
+                        </div>
+                    </div>
+
+                    <div class="poem">
+                        <h4>Hickory Dickory Dock</h4>
+                        <div class="poem-content">
+                            <p>Hickory, dickory, dock,<br>
+                            The mouse ran up the clock.<br>
+                            The clock struck one,<br>
+                            The mouse ran down,<br>
+                            Hickory, dickory, dock!</p>
+                        </div>
+                        <div class="poem-controls">
+                            <button onclick="speakPoem('Hickory, dickory, dock, The mouse ran up the clock. The clock struck one, The mouse ran down, Hickory, dickory, dock!')" class="btn speak-btn">🔊 Listen</button>
+                            <button onclick="stopListening()" class="btn stop-btn" disabled>⏹️ Stop</button>
+                        </div>
+                    </div>
+
+                    <div class="poem">
+                        <h4>Little Miss Muffet</h4>
+                        <div class="poem-content">
+                            <p>Little Miss Muffet sat on a tuffet,<br>
+                            Eating her curds and whey.<br>
+                            Along came a spider who sat down beside her,<br>
+                            And frightened Miss Muffet away!</p>
+                        </div>
+                        <div class="poem-controls">
+                            <button onclick="speakPoem('Little Miss Muffet sat on a tuffet, Eating her curds and whey. Along came a spider who sat down beside her, And frightened Miss Muffet away!')" class="btn speak-btn">🔊 Listen</button>
+                            <button onclick="stopListening()" class="btn stop-btn" disabled>⏹️ Stop</button>
+                        </div>
+                    </div>
+
+                    <div class="poem">
+                        <h4>Rain Rain Go Away</h4>
+                        <div class="poem-content">
+                            <p>Rain, rain, go away,<br>
+                            Come again another day.<br>
+                            Little children want to play,<br>
+                            Rain, rain, go away!</p>
+                        </div>
+                        <div class="poem-controls">
+                            <button onclick="speakPoem('Rain, rain, go away, Come again another day. Little children want to play, Rain, rain, go away!')" class="btn speak-btn">🔊 Listen</button>
+                            <button onclick="stopListening()" class="btn stop-btn" disabled>⏹️ Stop</button>
+                        </div>
+                    </div>
+
+                    <div class="poem">
+                        <h4>Humpty Dumpty</h4>
+                        <div class="poem-content">
+                            <p>Humpty Dumpty sat on a wall,<br>
+                            Humpty Dumpty had a great fall.<br>
+                            All the king's horses and all the king's men<br>
+                            Couldn't put Humpty together again!</p>
+                        </div>
+                        <div class="poem-controls">
+                            <button onclick="speakPoem('Humpty Dumpty sat on a wall, Humpty Dumpty had a great fall. All the king horses and all the king men Could not put Humpty together again!')" class="btn speak-btn">🔊 Listen</button>
+                            <button onclick="stopListening()" class="btn stop-btn" disabled>⏹️ Stop</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hindi Poems Section -->
+                <div class="poems-section">
+                    <h3>🌙 Hindi Poems</h3>
+                    
+                    <div class="poem">
+                        <h4>चंदा मामा</h4>
+                        <div class="poem-content">
+                            <p>चंदा मामा दूर के,<br>
+                            पुए पकाएं बूर के,<br>
+                            आप खाएं थाली में,<br>
+                            मुन्ने को दें प्याली में।<br>
+                            प्याली गई टूट,<br>
+                            चंदा मामा रूठ!</p>
+                        </div>
+                        <div class="poem-controls">
+                            <button onclick="speakPoem('चंदा मामा दूर के, पुए पकाएं बूर के, आप खाएं थाली में, मुन्ने को दें प्याली में। प्याली गई टूट, चंदा मामा रूठ!')" class="btn speak-btn">🔊 Listen</button>
+                            <button onclick="stopListening()" class="btn stop-btn" disabled>⏹️ Stop</button>
+                        </div>
+                    </div>
+
+                    <div class="poem">
+                        <h4>आओ बच्चों</h4>
+                        <div class="poem-content">
+                            <p>आओ बच्चों, आओ बच्चों,<br>
+                            खेलें खेल मिलकर।<br>
+                            गाना गाएं, नाचें नाच,<br>
+                            मज़े करें सब मिलकर।<br>
+                            आओ बच्चों, आओ बच्चों,<br>
+                            खेलें खेल मिलकर!</p>
+                        </div>
+                        <div class="poem-controls">
+                            <button onclick="speakPoem('आओ बच्चों, आओ बच्चों, खेलें खेल मिलकर। गाना गाएं, नाचें नाच, मज़े करें सब मिलकर। आओ बच्चों, आओ बच्चों, खेलें खेल मिलकर!')" class="btn speak-btn">🔊 Listen</button>
+                            <button onclick="stopListening()" class="btn stop-btn" disabled>⏹️ Stop</button>
+                        </div>
+                    </div>
+
+                    <div class="poem">
+                        <h4>मेरे प्यारे बगीचे में</h4>
+                        <div class="poem-content">
+                            <p>मेरे प्यारे बगीचे में,<br>
+                            खिले हैं फूल सारे।<br>
+                            गुलाब, गेंदा, चमेली,<br>
+                            सुंदर हैं सब प्यारे।<br>
+                            मेरे प्यारे बगीचे में,<br>
+                            खिले हैं फूल सारे!</p>
+                        </div>
+                        <div class="poem-controls">
+                            <button onclick="speakPoem('मेरे प्यारे बगीचे में, खिले हैं फूल सारे। गुलाब, गेंदा, चमेली, सुंदर हैं सब प्यारे। मेरे प्यारे बगीचे में, खिले हैं फूल सारे!')" class="btn speak-btn">🔊 Listen</button>
+                            <button onclick="stopListening()" class="btn stop-btn" disabled>⏹️ Stop</button>
+                        </div>
+                    </div>
+
+                    <div class="poem">
+                        <h4>गुड्डे-गुड़िया</h4>
+                        <div class="poem-content">
+                            <p>गुड्डे-गुड़िया खेल रहे,<br>
+                            बगीचे में मिलकर।<br>
+                            हंस रहे हैं, गा रहे हैं,<br>
+                            मज़े कर रहे मिलकर।<br>
+                            गुड्डे-गुड़िया खेल रहे,<br>
+                            बगीचे में मिलकर!</p>
+                        </div>
+                        <div class="poem-controls">
+                            <button onclick="speakPoem('गुड्डे-गुड़िया खेल रहे, बगीचे में मिलकर। हंस रहे हैं, गा रहे हैं, मज़े कर रहे मिलकर। गुड्डे-गुड़िया खेल रहे, बगीचे में मिलकर!')" class="btn speak-btn">🔊 Listen</button>
+                            <button onclick="stopListening()" class="btn stop-btn" disabled>⏹️ Stop</button>
+                        </div>
+                    </div>
+
+                    <div class="poem">
+                        <h4>नन्हीं चिड़िया</h4>
+                        <div class="poem-content">
+                            <p>नन्हीं चिड़िया, नन्हीं चिड़िया,<br>
+                            आसमान में उड़ती है।<br>
+                            पंख फैलाकर गाती है,<br>
+                            मज़े से खुशी मनाती है।<br>
+                            नन्हीं चिड़िया, नन्हीं चिड़िया,<br>
+                            आसमान में उड़ती है!</p>
+                        </div>
+                        <div class="poem-controls">
+                            <button onclick="speakPoem('नन्हीं चिड़िया, नन्हीं चिड़िया, आसमान में उड़ती है। पंख फैलाकर गाती है, मज़े से खुशी मनाती है। नन्हीं चिड़िया, नन्हीं चिड़िया, आसमान में उड़ती है!')" class="btn speak-btn">🔊 Listen</button>
+                            <button onclick="stopListening()" class="btn stop-btn" disabled>⏹️ Stop</button>
+                        </div>
+                    </div>
+
+                    <div class="poem">
+                        <h4>तोता रानी</h4>
+                        <div class="poem-content">
+                            <p>तोता रानी, तोता रानी,<br>
+                            हरे रंग की सुंदर रानी।<br>
+                            बोलती है मीठी बातें,<br>
+                            सबको करती है खुश रानी।<br>
+                            तोता रानी, तोता रानी,<br>
+                            हरे रंग की सुंदर रानी!</p>
+                        </div>
+                        <div class="poem-controls">
+                            <button onclick="speakPoem('तोता रानी, तोता रानी, हरे रंग की सुंदर रानी। बोलती है मीठी बातें, सबको करती है खुश रानी। तोता रानी, तोता रानी, हरे रंग की सुंदर रानी!')" class="btn speak-btn">🔊 Listen</button>
+                            <button onclick="stopListening()" class="btn stop-btn" disabled>⏹️ Stop</button>
+                        </div>
+                    </div>
+
+                    <div class="poem">
+                        <h4>मछली जल की रानी है</h4>
+                        <div class="poem-content">
+                            <p>मछली जल की रानी है,<br>
+                            जीवन उसका पानी है।<br>
+                            हाथ लगाओ तो ये डर जाएगी,<br>
+                            बाहर निकालो तो ये मर जाएगी।<br>
+                            मछली जल की रानी है,<br>
+                            जीवन उसका पानी है!</p>
+                        </div>
+                        <div class="poem-controls">
+                            <button onclick="speakPoem('मछली जल की रानी है, जीवन उसका पानी है। हाथ लगाओ तो ये डर जाएगी, बाहर निकालो तो ये मर जाएगी। मछली जल की रानी है, जीवन उसका पानी है!')" class="btn speak-btn">🔊 Listen</button>
+                            <button onclick="stopListening()" class="btn stop-btn" disabled>⏹️ Stop</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="poem-tips">
+                <h3>📚 Poem Fun:</h3>
+                <ul>
+                    <li>Click the "Listen" button to hear the poems</li>
+                    <li>Click "Stop" to stop any ongoing speech</li>
+                    <li>Try to memorize the poems</li>
+                    <li>Recite them to your family and friends</li>
+                    <li>Poems help us learn new words and sounds</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

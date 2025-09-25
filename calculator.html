@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧮 Calculator - Baccho ki Site</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="KID.png">   
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="KID.png" alt="Kid Logo" class="site-logo">
+            <h1>🌟 Baccho ki Site 🌟</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link">🏠 Home</a>
+            <a href="calculator.html" class="nav-link active">🧮 Calculator</a>
+            <a href="drawing.html" class="nav-link">🎨 Drawing</a>
+            <a href="poems.html" class="nav-link">📝 Poems</a>
+            <a href="alphabets.html" class="nav-link">🔤 Alphabets</a>
+            <a href="stories.html" class="nav-link">👑 Stories</a>
+            <a href="tenali-rama.html" class="nav-link">😄 Tenali Rama</a>
+            <a href="shapes.html" class="nav-link">🔷 Shapes</a>
+            <a href="colors.html" class="nav-link">🌈 Colors</a>
+            <a href="child-registration.html" class="nav-link">👶 My Profile</a>
+            <a href="heritage.html" class="nav-link">🇮🇳 Heritage</a>
+            <a href="settings.html" class="nav-link">⚙️ Settings</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-section">
+            <h2>🧮 Calculator</h2>
+            <p>Use this fun calculator to do math! Click the numbers and operators to calculate.</p>
+            
+            <div class="calculator">
+                <div class="display">
+                    <input type="text" id="calc-display" readonly>
+                </div>
+                <div class="buttons">
+                    <button onclick="clearDisplay()" class="btn clear">Clear</button>
+                    <button onclick="deleteLast()" class="btn operator">⌫</button>
+                    <button onclick="appendToDisplay('/')" class="btn operator">÷</button>
+                    <button onclick="appendToDisplay('*')" class="btn operator">×</button>
+                    
+                    <button onclick="appendToDisplay('7')" class="btn number">7</button>
+                    <button onclick="appendToDisplay('8')" class="btn number">8</button>
+                    <button onclick="appendToDisplay('9')" class="btn number">9</button>
+                    <button onclick="appendToDisplay('-')" class="btn operator">-</button>
+                    
+                    <button onclick="appendToDisplay('4')" class="btn number">4</button>
+                    <button onclick="appendToDisplay('5')" class="btn number">5</button>
+                    <button onclick="appendToDisplay('6')" class="btn number">6</button>
+                    <button onclick="appendToDisplay('+')" class="btn operator">+</button>
+                    
+                    <button onclick="appendToDisplay('1')" class="btn number">1</button>
+                    <button onclick="appendToDisplay('2')" class="btn number">2</button>
+                    <button onclick="appendToDisplay('3')" class="btn number">3</button>
+                    <button onclick="calculate()" class="btn equals" rowspan="2">=</button>
+                    
+                    <button onclick="appendToDisplay('0')" class="btn number zero">0</button>
+                    <button onclick="appendToDisplay('.')" class="btn number">.</button>
+                </div>
+            </div>
+            
+            <div class="calculator-tips">
+                <h3>💡 Tips:</h3>
+                <ul>
+                    <li>Click numbers to enter them</li>
+                    <li>Click +, -, ×, ÷ for operations</li>
+                    <li>Click = to see the answer</li>
+                    <li>Click Clear to start over</li>
+                    <li>You can also use your keyboard!</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

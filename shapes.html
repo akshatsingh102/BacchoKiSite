@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔷 Shapes Learning - Baccho ki Site</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="KID.png">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="KID.png" alt="Kid Logo" class="site-logo">
+            <h1>🌟 Baccho ki Site 🌟</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link">🏠 Home</a>
+            <a href="calculator.html" class="nav-link">🧮 Calculator</a>
+            <a href="drawing.html" class="nav-link">🎨 Drawing</a>
+            <a href="poems.html" class="nav-link">📝 Poems</a>
+            <a href="alphabets.html" class="nav-link">🔤 Alphabets</a>
+            <a href="stories.html" class="nav-link">👑 Stories</a>
+            <a href="tenali-rama.html" class="nav-link">😄 Tenali Rama</a>
+            <a href="shapes.html" class="nav-link active">🔷 Shapes</a>
+            <a href="colors.html" class="nav-link">🌈 Colors</a>
+            <a href="settings.html" class="nav-link">⚙️ Settings</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-section">
+            <h2>🔷 Learn Shapes by Drawing</h2>
+            <p>Learn different shapes by drawing them! Click on a shape to see how to draw it, then try drawing it yourself!</p>
+            
+            <div class="shapes-learning-container">
+                <div class="shapes-grid">
+                    <div class="shape-card" onclick="selectShape('circle')">
+                        <div class="shape-demo circle-shape"></div>
+                        <h3>⭕ Circle</h3>
+                        <p>Round like a ball or wheel</p>
+                    </div>
+                    
+                    <div class="shape-card" onclick="selectShape('square')">
+                        <div class="shape-demo square-shape"></div>
+                        <h3>⬜ Square</h3>
+                        <p>Four equal sides</p>
+                    </div>
+                    
+                    <div class="shape-card" onclick="selectShape('triangle')">
+                        <div class="shape-demo triangle-shape"></div>
+                        <h3>🔺 Triangle</h3>
+                        <p>Three sides and three corners</p>
+                    </div>
+                    
+                    <div class="shape-card" onclick="selectShape('rectangle')">
+                        <div class="shape-demo rectangle-shape"></div>
+                        <h3>⬛ Rectangle</h3>
+                        <p>Four sides, longer than wide</p>
+                    </div>
+                    
+                    <div class="shape-card" onclick="selectShape('star')">
+                        <div class="shape-demo star-shape"></div>
+                        <h3>⭐ Star</h3>
+                        <p>Five points like a star in the sky</p>
+                    </div>
+                    
+                    <div class="shape-card" onclick="selectShape('heart')">
+                        <div class="shape-demo heart-shape"></div>
+                        <h3>❤️ Heart</h3>
+                        <p>Two curves that meet at the bottom</p>
+                    </div>
+                </div>
+                
+                <div class="drawing-area">
+                    <div class="selected-shape-info" id="shape-info">
+                        <h3>Choose a shape to learn!</h3>
+                        <p>Click on any shape above to see how to draw it.</p>
+                    </div>
+                    
+                    <canvas id="shapes-canvas" width="800" height="500"></canvas>
+                    
+                    <div class="shape-controls">
+                        <button onclick="clearShapesCanvas()" class="btn clear">Clear Canvas</button>
+                        <button onclick="deleteSelectedShape()" class="btn delete-btn">🗑️ Delete Shape</button>
+                        <button onclick="showShapeGuide()" class="btn guide-btn">Show Guide</button>
+                        <button onclick="speakShapeName()" class="btn speak-btn">🔊 Say Shape</button>
+                        <button onclick="stopListening()" class="btn stop-btn" disabled>⏹️ Stop</button>
+                    </div>
+                    
+                    <div class="color-palette">
+                        <h4>Choose Colors:</h4>
+                        <div class="color-options">
+                            <div class="color-option" style="background: #ff6b6b" onclick="setShapeColor('#ff6b6b')"></div>
+                            <div class="color-option" style="background: #4ecdc4" onclick="setShapeColor('#4ecdc4')"></div>
+                            <div class="color-option" style="background: #45b7d1" onclick="setShapeColor('#45b7d1')"></div>
+                            <div class="color-option" style="background: #96ceb4" onclick="setShapeColor('#96ceb4')"></div>
+                            <div class="color-option" style="background: #feca57" onclick="setShapeColor('#feca57')"></div>
+                            <div class="color-option" style="background: #ff9ff3" onclick="setShapeColor('#ff9ff3')"></div>
+                            <div class="color-option" style="background: #54a0ff" onclick="setShapeColor('#54a0ff')"></div>
+                            <div class="color-option" style="background: #5f27cd" onclick="setShapeColor('#5f27cd')"></div>
+                        </div>
+                        <div class="selected-color-preview">
+                            <h5>Selected Color:</h5>
+                            <div class="color-preview" id="color-preview" style="background: #ff6b6b"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="shapes-tips">
+                <h3>🔷 Shape Learning Tips:</h3>
+                <ul>
+                    <li>Click on any shape card to select it</li>
+                    <li>Click anywhere on the canvas to create the selected shape</li>
+                    <li>Click on a shape to select it (you'll see a dotted outline)</li>
+                    <li>Drag shapes around the canvas to move them</li>
+                    <li>Drag the red square handle to resize shapes</li>
+                    <li>Click "Delete Shape" to remove the selected shape</li>
+                    <li>Double-click on any shape to quickly delete it</li>
+                    <li>Choose different colors to make your shapes beautiful</li>
+                    <li>Create multiple shapes and arrange them as you like</li>
+                    <li>Click "Say Shape" to hear the shape name</li>
+                    <li>Click "Stop" to stop any ongoing speech</li>
+                    <li>Click "Clear Canvas" to remove all shapes</li>
+                    <li>Look for these shapes in the world around you!</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

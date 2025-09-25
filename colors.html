@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌈 Colors Learning - Baccho ki Site</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="KID.png">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="KID.png" alt="Kid Logo" class="site-logo">
+            <h1>🌟 Baccho ki Site 🌟</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link">🏠 Home</a>
+            <a href="calculator.html" class="nav-link">🧮 Calculator</a>
+            <a href="drawing.html" class="nav-link">🎨 Drawing</a>
+            <a href="poems.html" class="nav-link">📝 Poems</a>
+            <a href="alphabets.html" class="nav-link">🔤 Alphabets</a>
+            <a href="stories.html" class="nav-link">👑 Stories</a>
+            <a href="tenali-rama.html" class="nav-link">😄 Tenali Rama</a>
+            <a href="shapes.html" class="nav-link">🔷 Shapes</a>
+            <a href="colors.html" class="nav-link active">🌈 Colors</a>
+            <a href="settings.html" class="nav-link">⚙️ Settings</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-section">
+            <h2>🌈 Learn Colors</h2>
+            <p>Learn about different colors! Click on any color to hear its name and see examples!</p>
+            
+            <div class="colors-learning-container">
+                <div class="basic-colors">
+                    <h3>🎨 Basic Colors</h3>
+                    <div class="colors-grid">
+                        <div class="color-card" onclick="learnColor('red', '#ff6b6b')">
+                            <div class="color-circle" style="background: #ff6b6b"></div>
+                            <h4>🔴 Red</h4>
+                            <p>Like apples and roses</p>
+                        </div>
+                        
+                        <div class="color-card" onclick="learnColor('blue', '#4ecdc4')">
+                            <div class="color-circle" style="background: #4ecdc4"></div>
+                            <h4>🔵 Blue</h4>
+                            <p>Like the sky and ocean</p>
+                        </div>
+                        
+                        <div class="color-card" onclick="learnColor('yellow', '#feca57')">
+                            <div class="color-circle" style="background: #feca57"></div>
+                            <h4>🟡 Yellow</h4>
+                            <p>Like the sun and bananas</p>
+                        </div>
+                        
+                        <div class="color-card" onclick="learnColor('green', '#96ceb4')">
+                            <div class="color-circle" style="background: #96ceb4"></div>
+                            <h4>🟢 Green</h4>
+                            <p>Like grass and leaves</p>
+                        </div>
+                        
+                        <div class="color-card" onclick="learnColor('orange', '#ff9f43')">
+                            <div class="color-circle" style="background: #ff9f43"></div>
+                            <h4>🟠 Orange</h4>
+                            <p>Like oranges and carrots</p>
+                        </div>
+                        
+                        <div class="color-card" onclick="learnColor('purple', '#5f27cd')">
+                            <div class="color-circle" style="background: #5f27cd"></div>
+                            <h4>🟣 Purple</h4>
+                            <p>Like grapes and flowers</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="color-mixing">
+                    <h3>🎨 Color Mixing Fun</h3>
+                    <div class="mixing-area">
+                        <div class="mixer-container">
+                            <div class="color-mixer" id="color-mixer">
+                                <div class="mixer-circle" id="mixer-result"></div>
+                            </div>
+                            <div class="mixer-controls">
+                                <div class="mixer-slider">
+                                    <label>Red: <span id="red-value">0</span></label>
+                                    <input type="range" id="red-slider" min="0" max="255" value="0" onchange="updateMixer()">
+                                </div>
+                                <div class="mixer-slider">
+                                    <label>Green: <span id="green-value">0</span></label>
+                                    <input type="range" id="green-slider" min="0" max="255" value="0" onchange="updateMixer()">
+                                </div>
+                                <div class="mixer-slider">
+                                    <label>Blue: <span id="blue-value">0</span></label>
+                                    <input type="range" id="blue-slider" min="0" max="255" value="0" onchange="updateMixer()">
+                                </div>
+                                <button onclick="resetMixer()" class="btn clear">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="color-games">
+                    <h3>🎮 Color Games</h3>
+                    <div class="games-grid">
+                        <div class="game-card" onclick="startColorQuiz()">
+                            <div class="game-icon">🎯</div>
+                            <h4>Color Quiz</h4>
+                            <p>Test your color knowledge!</p>
+                        </div>
+                        
+                        <div class="game-card" onclick="startColorMemory()">
+                            <div class="game-icon">🧠</div>
+                            <h4>Color Memory</h4>
+                            <p>Remember the color sequence!</p>
+                        </div>
+                        
+                        <div class="game-card" onclick="startColorMatch()">
+                            <div class="game-icon">🔗</div>
+                            <h4>Color Match</h4>
+                            <p>Match colors with objects!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="color-facts">
+                    <h3>📚 Fun Color Facts</h3>
+                    <div class="facts-container">
+                        <div class="fact-card">
+                            <h4>🌈 Rainbow Colors</h4>
+                            <p>Red, Orange, Yellow, Green, Blue, Indigo, Violet - remember ROY G BIV!</p>
+                        </div>
+                        <div class="fact-card">
+                            <h4>🎨 Primary Colors</h4>
+                            <p>Red, Blue, and Yellow are primary colors. You can't make them by mixing other colors!</p>
+                        </div>
+                        <div class="fact-card">
+                            <h4>🟢 Nature's Colors</h4>
+                            <p>Green is the most common color in nature because of all the plants and trees!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="colors-tips">
+                <h3>🌈 Color Learning Tips:</h3>
+                <ul>
+                    <li>Click on any color to hear its name and learn about it</li>
+                    <li>Try the color mixer to see how colors combine</li>
+                    <li>Play the color games to test your knowledge</li>
+                    <li>Look around you and name the colors you see</li>
+                    <li>Practice mixing colors with paints or crayons</li>
+                    <li>Remember that colors can make us feel happy, calm, or excited!</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
