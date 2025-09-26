@@ -115,6 +115,25 @@ let currentLineWidth = 5;
 let currentTool = 'draw';
 let isFillMode = false;
 
+// Mobile touch support for drawing
+function setupMobileDrawing() {
+    const canvas = document.getElementById('drawing-canvas');
+    if (!canvas) return;
+    
+    // Prevent default touch behaviors
+    canvas.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+    }, { passive: false });
+    
+    canvas.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+    }, { passive: false });
+    
+    canvas.addEventListener('touchend', function(e) {
+        e.preventDefault();
+    }, { passive: false });
+}
+
 // Set up canvas
 if (ctx) {
     ctx.lineCap = 'round';
@@ -1835,7 +1854,43 @@ function loadChildInfo() {
     }
 }
 
+// Mobile touch improvements
+function addMobileTouchSupport() {
+    // Prevent zoom on double tap for better touch experience
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function (event) {
+        const now = (new Date()).getTime();
+        if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+        }
+        lastTouchEnd = now;
+    }, false);
+    
+    // Improve touch scrolling
+    document.body.style.webkitOverflowScrolling = 'touch';
+    
+    // Add touch feedback for buttons
+    const touchElements = document.querySelectorAll('.btn, .nav-link, .letter, .calc-btn, .shape-btn, .color-btn');
+    touchElements.forEach(element => {
+        element.addEventListener('touchstart', function() {
+            this.style.transform = 'scale(0.95)';
+            this.style.opacity = '0.8';
+        });
+        
+        element.addEventListener('touchend', function() {
+            this.style.transform = '';
+            this.style.opacity = '';
+        });
+    });
+}
+
 window.addEventListener('load', function() {
+    // Initialize mobile touch support
+    addMobileTouchSupport();
+    
+    // Initialize mobile drawing support
+    setupMobileDrawing();
+    
     // Check if this is the first visit
     const hasVisited = localStorage.getItem('hasVisitedBacchoSite');
     

@@ -2475,11 +2475,167 @@ main {
     margin: 10px 0;
 }
 
-/* Responsive Design for Games */
+/* Enhanced Mobile Responsive Design */
 @media (max-width: 768px) {
+    /* Header and Navigation */
+    .header-content {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+    
+    .site-logo {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .main-nav {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 10px;
+    }
+    
+    .nav-link {
+        padding: 8px 12px;
+        font-size: 0.9em;
+        min-width: auto;
+    }
+    
+    /* Main Content */
+    .page-section {
+        padding: 15px;
+        margin: 10px;
+    }
+    
+    .page-section h2 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+    
+    /* Calculator */
+    .calculator-container {
+        max-width: 100%;
+        padding: 15px;
+    }
+    
+    .calculator-display {
+        font-size: 1.8em;
+        padding: 15px;
+    }
+    
+    .calculator-buttons {
+        gap: 8px;
+    }
+    
+    .calc-btn {
+        padding: 15px;
+        font-size: 1.2em;
+        min-height: 50px;
+    }
+    
+    /* Drawing Canvas */
+    .drawing-container {
+        padding: 10px;
+    }
+    
+    .drawing-canvas {
+        width: 100%;
+        max-width: 100%;
+        height: 300px;
+        border: 2px solid #ddd;
+    }
+    
+    .drawing-controls {
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    
+    .color-palette {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .color-btn {
+        width: 35px;
+        height: 35px;
+    }
+    
+    /* Alphabets */
+    .alphabet-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+    }
+    
+    .alphabet-grid.hindi {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    
+    .letter {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2em;
+    }
+    
+    /* Stories */
+    .stories-container {
+        gap: 15px;
+    }
+    
+    .story {
+        padding: 15px;
+    }
+    
+    .story h4 {
+        font-size: 1.3em;
+    }
+    
+    .story-content {
+        font-size: 1em;
+        line-height: 1.5;
+    }
+    
+    /* Shapes */
+    .shapes-container {
+        padding: 10px;
+    }
+    
+    .shapes-canvas {
+        width: 100%;
+        max-width: 100%;
+        height: 400px;
+    }
+    
+    .shape-controls {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .shape-btn {
+        padding: 12px 16px;
+        font-size: 1em;
+    }
+    
+    /* Colors */
+    .colors-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .color-card {
+        padding: 15px;
+    }
+    
+    .color-circle {
+        width: 60px;
+        height: 60px;
+    }
+    
+    /* Games */
     .game-container {
         padding: 20px;
-        margin: 20px;
+        margin: 10px;
+        max-width: 95%;
     }
     
     .match-game {
@@ -2489,9 +2645,248 @@ main {
     
     .quiz-options {
         grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .quiz-option {
+        padding: 12px 15px;
+        font-size: 1em;
     }
     
     .memory-colors {
         grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .memory-color {
+        width: 60px;
+        height: 60px;
+    }
+    
+    /* Heritage Page */
+    .heritage-container {
+        padding: 10px;
+    }
+    
+    .heritage-tabs {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .tab-btn {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+    
+    .india-map {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .state {
+        width: 20px;
+        height: 20px;
+        font-size: 0.7em;
+    }
+    
+    /* Maths Page */
+    .maths-container {
+        padding: 10px;
+    }
+    
+    .maths-tabs {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .tables-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .counting-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 5px;
+    }
+    
+    .number-item {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+    
+    /* Settings */
+    .settings-container {
+        padding: 15px;
+    }
+    
+    .settings-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    /* Child Registration */
+    .registration-container {
+        flex-direction: column;
+        padding: 15px;
+    }
+    
+    .gender-selection {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .gender-option {
+        padding: 20px;
+    }
+    
+    .gender-image {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/* Extra Small Mobile Devices */
+@media (max-width: 480px) {
+    .header-content h1 {
+        font-size: 1.5em;
+    }
+    
+    .main-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .nav-link {
+        width: 100%;
+        text-align: center;
+        margin: 2px 0;
+    }
+    
+    .page-section {
+        padding: 10px;
+        margin: 5px;
+    }
+    
+    .page-section h2 {
+        font-size: 1.5em;
+    }
+    
+    .calc-btn {
+        padding: 12px;
+        font-size: 1.1em;
+        min-height: 45px;
+    }
+    
+    .drawing-canvas {
+        height: 250px;
+    }
+    
+    .shapes-canvas {
+        height: 300px;
+    }
+    
+    .alphabet-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .alphabet-grid.hindi {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .letter {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1em;
+    }
+    
+    .colors-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .color-card {
+        padding: 12px;
+    }
+    
+    .counting-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .number-item {
+        padding: 6px;
+        font-size: 0.8em;
+    }
+    
+    .game-container {
+        padding: 15px;
+        margin: 5px;
+    }
+    
+    .quiz-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .memory-colors {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 200px;
+    }
+    
+    .memory-color {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    /* Increase touch targets */
+    .btn, .nav-link, .letter, .calc-btn, .shape-btn, .color-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Remove hover effects on touch devices */
+    .btn:hover, .nav-link:hover, .letter:hover, .calc-btn:hover, 
+    .shape-btn:hover, .color-btn:hover {
+        transform: none;
+        box-shadow: initial;
+    }
+    
+    /* Add active states for touch feedback */
+    .btn:active, .nav-link:active, .letter:active, .calc-btn:active,
+    .shape-btn:active, .color-btn:active {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+    
+    /* Improve canvas touch interactions */
+    .drawing-canvas, .shapes-canvas {
+        touch-action: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+    .header-content {
+        flex-direction: row;
+        gap: 15px;
+    }
+    
+    .main-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .drawing-canvas, .shapes-canvas {
+        height: 200px;
+    }
+    
+    .game-container {
+        max-height: 90vh;
+        overflow-y: auto;
     }
 }
