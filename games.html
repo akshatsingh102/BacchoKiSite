@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 Games - Baccho ki Site</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="KID.png" type="image/png">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="KID.png" alt="Kid Logo" class="kid-logo">
+            <h1>🌟 Baccho ki Site 🌟</h1>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link">🏠 Home</a>
+            <a href="calculator.html" class="nav-link">🧮 Calculator</a>
+            <a href="drawing.html" class="nav-link">🎨 Drawing</a>
+            <a href="poems.html" class="nav-link">📜 Poems</a>
+            <a href="alphabets.html" class="nav-link">🔤 Alphabets</a>
+            <a href="stories.html" class="nav-link">📚 Stories</a>
+            <a href="tenali-rama.html" class="nav-link">🤠 Tenali Rama</a>
+            <a href="shapes.html" class="nav-link">📐 Shapes</a>
+            <a href="colors.html" class="nav-link">🎨 Colors</a>
+            <a href="maths.html" class="nav-link">🔢 Maths</a>
+            <a href="child-registration.html" class="nav-link">👶 Child Registration</a>
+            <a href="heritage.html" class="nav-link">🏛️ Heritage</a>
+            <a href="games.html" class="nav-link">🎮 Games</a>
+            <a href="settings.html" class="nav-link">⚙️ Settings</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="games-section">
+            <h2>🎮 Fun Games for Kids! 🎮</h2>
+            <p class="section-description">Play these amazing games and have fun while learning!</p>
+            
+            <div class="games-grid">
+                <!-- Memory Game -->
+                <div class="game-card" onclick="startMemoryGame()">
+                    <div class="game-icon">🧠</div>
+                    <h3>Memory Game</h3>
+                    <p>Match the pairs and test your memory!</p>
+                    <div class="game-tags">
+                        <span class="tag difficulty-easy">🟢 Easy</span>
+                        <span class="tag">🔥 Memory</span>
+                    </div>
+                </div>
+
+                <!-- Puzzle Game -->
+                <div class="game-card" onclick="startPuzzleGame()">
+                    <div class="game-icon">🧩</div>
+                    <h3>Picture Puzzle</h3>
+                    <p>Arrange the pieces to complete the picture!</p>
+                    <div class="game-tags">
+                        <span class="tag difficulty-medium">🟡 Medium</span>
+                        <span class="tag">🧩 Puzzle</span>
+                    </div>
+                </div>
+
+                <!-- Number Game -->
+                <div class="game-card" onclick="startNumberGame()">
+                    <div class="game-icon">🔢</div>
+                    <h3>Number Catch</h3>
+                    <p>Catch the falling numbers in the basket!</p>
+                    <div class="game-tags">
+                        <span class="tag difficulty-medium">🟡 Medium</span>
+                        <span class="tag">⚡ Action</span>
+                    </div>
+                </div>
+
+                <!-- Word Game -->
+                <div class="game-card" onclick="startWordGame()">
+                    <div class="game-icon">📝</div>
+                    <h3>Word Builder</h3>
+                    <p>Make words by connecting the letters!</p>
+                    <div class="game-tags">
+                        <span class="tag difficulty-easy">🟢 Easy</span>
+                        <span class="tag">📚 Learning</span>
+                    </div>
+                </div>
+
+                <!-- Color Game -->
+                <div class="game-card" onclick="startColorGame()">
+                    <div class="game-icon">🌈</div>
+                    <h3>Color Catcher</h3>
+                    <p>Catch the right colors as they fall!</p>
+                    <div class="game-tags">
+                        <span class="tag difficulty-easy">🟢 Easy</span>
+                        <span class="tag">🎨 Colors</span>
+                    </div>
+                </div>
+
+                <!-- Shape Game -->
+                <div class="game-card" onclick="startShapeGame()">
+                    <div class="game-icon">⭐</div>
+                    <h3>Shape Sorter</h3>
+                    <p>Sort shapes into the correct boxes!</p>
+                    <div class="game-tags">
+                        <span class="tag difficulty-easy">🟢 Easy</span>
+                        <span class="tag">📐 Shapes</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Game Container (for displaying games) -->
+    <div id="game-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

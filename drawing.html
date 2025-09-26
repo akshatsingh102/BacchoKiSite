@@ -30,48 +30,187 @@
 
     <main>
         <section class="page-section">
-            <h2>🎨 Drawing Pad</h2>
-            <p>Draw anything you want! Use your mouse to draw and choose different colors.</p>
+            <h2>🎨 Complete Drawing Studio</h2>
+            <p>🎨 Paint like an artist! Use all these amazing drawing and painting tools!</p>
             
-            <div class="drawing-container">
-                <canvas id="drawing-canvas" width="800" height="500"></canvas>
-                <div class="drawing-controls">
-                    <div class="control-group">
-                        <button onclick="clearCanvas()" class="btn clear">Clear Drawing</button>
-                        <button onclick="toggleFillMode()" class="btn fill-btn" id="fill-btn">🎨 Fill Mode</button>
+            <div class="drawing-main-container">
+                <!-- Drawing Tools Panel -->
+                <div class="drawing-tools-panel">
+                    <h3>🛠️ Drawing Tools</h3>
+                    
+                    <!-- Brush Tools Section -->
+                    <div class="tool-section">
+                        <h4>🖌️ Brushes</h4>
+                        <div class="tool-buttons">
+                            <button onclick="setTool('pencil')" class="btn tool-btn active" id="pencil-tool">✏️ Pencil</button>
+                            <button onclick="setTool('brush')" class="btn tool-btn" id="brush-tool">🖌️ Paint Brush</button>
+                            <button onclick="setTool('marker')" class="btn tool-btn" id="marker-tool">🖍️ Marker</button>
+                            <button onclick="setTool('crayon')" class="btn tool-btn" id="crayon-tool">🖍️ Crayon</button>
+                        </div>
                     </div>
                     
-                    <div class="color-control">
-                        <input type="color" id="color-picker" value="#000000" onchange="changeColor(this.value)">
-                        <label for="color-picker">Choose Color</label>
+                    <!-- Drawing Tools Section -->
+                    <div class="tool-section">
+                        <h4>✏️ Drawing Tools</h4>
+                        <div class="tool-buttons">
+                            <button onclick="setTool('eraser')" class="btn tool-btn" id="eraser-tool">🧽 Eraser</button>
+                            <button onclick="setTool('fill')" class="btn tool-btn" id="fill-tool">🪣 Fill Bucket</button>
+                            <button onclick="setTool('text')" class="btn tool-btn" id="text-tool">🔤 Add Text</button>
+                            <button onclick="setTool('spray')" class="btn tool-btn" id="spray-tool">💨 Spray Paint</button>
+                        </div>
                     </div>
                     
-                    <div class="brush-controls">
-                        <label for="brush-size">Brush Size:</label>
-                        <input type="range" id="brush-size" min="1" max="30" value="5" onchange="changeBrushSize(this.value)">
-                        <span id="brush-size-display">5</span>
+                    <!-- Shape Tools Section -->
+                    <div class="tool-section">
+                        <h4>📐 Shapes</h4>
+                        <div class="tool-buttons">
+                            <button onclick="setTool('line')" class="btn tool-btn" id="line-tool">➖ Line</button>
+                            <button onclick="setTool('circle')" class="btn tool-btn" id="circle-tool">⭕ Circle</button>
+                            <button onclick="setTool('rectangle')" class="btn tool-btn" id="rectangle-tool">⬜ Rectangle</button>
+                            <button onclick="setTool('triangle')" class="btn tool-btn" id="triangle-tool">🔺 Triangle</button>
+                            <button onclick="setTool('star')" class="btn tool-btn" id="star-tool">⭐ Star</button>
+                            <button onclick="setTool('heart')" class="btn tool-btn" id="heart-tool">💖 Heart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Canvas Area -->
+                <div class="canvas-area">
+                    <div class="canvas-wrapper">
+                        <canvas id="drawing-canvas" width="800" height="600"></canvas>
                     </div>
                     
-                    <div class="tool-controls">
-                        <button onclick="setTool('draw')" class="btn tool-btn active" id="draw-tool">✏️ Draw</button>
-                        <button onclick="setTool('fill')" class="btn tool-btn" id="fill-tool">🪣 Fill</button>
-                        <button onclick="setTool('eraser')" class="btn tool-btn" id="eraser-tool">🧽 Eraser</button>
+                    <!-- Canvas Controls -->
+                    <div class="canvas-controls">
+                        <button onclick="clearCanvas()" class="btn clear-large">🗑️ Clear Canvas</button>
+                        <button onclick="saveDrawing()" class="btn save-large">💾 Save Drawing</button>
+                        <button onclick="undoLastAction()" class="btn undo-large">↶ Undo</button>
+                        <button onclick="downloadDrawing()" class="btn download-large">📥 Download</button>
+                    </div>
+                </div>
+                
+                <!-- Color & Brush Controls Panel -->
+                <div class="control-panel">
+                    <h3>🎨 Colors & Properties</h3>
+                    
+                    <!-- Color Section -->
+                    <div class="color-section">
+                        <h4>🌈 Color Palette</h4>
+                        <div class="color-palette">
+                            <!-- Primary Colors -->
+                            <div class="color-row">
+                                <button onclick="changeColor('#FF0000')" class="color-btn" style="background: #FF0000" title="Red">🔴</button>
+                                <button onclick="changeColor('#FF8000')" class="color-btn" style="background: #FF8000" title="Orange">🟠</button>
+                                <button onclick="changeColor('#FFFF00')" class="color-btn" style="background: #FFFF00" title="Yellow">🟡</button>
+                                <button onclick="changeColor('#00FF00')" class="color-btn" style="background: #00FF00" title="Green">🟢</button>
+                                <button onclick="changeColor('#0000FF')" class="color-btn" style="background: #0000FF" title="Blue">🔵</button>
+                                <button onclick="changeColor('#8000FF')" class="color-btn" style="background: #8000FF" title="Purple">🟣</button>
+                            </div>
+                            
+                            <!-- Secondary Colors -->
+                            <div class="color-row">
+                                <button onclick="changeColor('#FFB3B3')" class="color-btn" style="background: #FFB3B3" title="Light Pink"></button>
+                                <button onclick="changeColor('#FFEB3B')" class="color-btn" style="background: #FFEB3B" title="Gold"></button>
+                                <button onclick="changeColor('#4CAF50')" class="color-btn" style="background: #4CAF50" title="Forest Green"></button>
+                                <button onclick="changeColor('#2196F3')" class="color-btn" style="background: #2196F3" title="Light Blue"></button>
+                                <button onclick="changeColor('#9C27B0')" class="color-btn" style="background: #9C27B0" title="Dark Purple"></button>
+                                <button onclick="changeColor('#000000')" class="color-btn" style="background: #000000" title="Black">⚫</button>
+                            </div>
+                            
+                            <!-- Pastel Colors -->
+                            <div class="color-row">
+                                <button onclick="changeColor('#FFE0E0')" class="color-btn" style="background: #FFE0E0" title="Pastel Pink"></button>
+                                <button onclick="changeColor('#E0FFE0')" class="color-btn" style="background: #E0FFE0" title="Pastel Green"></button>
+                                <button onclick="changeColor('#E0E0FF')" class="color-btn" style="background: #E0E0FF" title="Pastel Blue"></button>
+                                <button onclick="changeColor('#FFFECB')" class="color-btn" style="background: #FFFECB" title="Pastel Yellow"></button>
+                                <button onclick="changeColor('#FFD700')" class="color-btn" style="background: #FFD700" title="Gold"></button>
+                                <button onclick="changeColor('#FF1493')" class="color-btn" style="background: #FF1493" title="Hot Pink"></button>
+                            </div>
+                        </div>
+                        
+                        <!-- Custom Color Picker -->
+                        <div class="custom-color-section">
+                            <h4>🎨 Custom Color</h4>
+                            <input type="color" id="color-picker" value="#000000" onchange="changeColor(this.value)">
+                            <label for="color-picker">🎯 Pick Any Color</label>
+                        </div>
+                    </div>
+                    
+                    <!-- Brush Settings -->
+                    <div class="brush-settings">
+                        <h4>🖌️ Brush Settings</h4>
+                        <div class="setting-group">
+                            <label for="brush-size">Size: <span id="brush-size-display">10</span>px</label>
+                            <input type="range" id="brush-size" min="1" max="50" value="10" onchange="changeBrushSize(this.value)">
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="opacity">Opacity: <span id="opacity-display">100</span>%</label>
+                            <input type="range" id="opacity" min="10" max="100" value="100" onchange="changeOpacity(this.value)">
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label>
+                                <input type="checkbox" id="smooth-brush" onchange="toggleSmoothMode(this.checked)">
+                                ✨ Smooth Drawing
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Text Settings -->
+                    <div class="text-settings" id="text-settings" style="display: none;">
+                        <h4>📝 Text Settings</h4>
+                        <div class="setting-group">
+                            <input type="text" id="text-input" placeholder="Type your text here..." maxlength="50">
+                            <button onclick="addTextToCanvas()" class="btn">✅ Add Text</button>
+                        </div>
                     </div>
                 </div>
             </div>
             
             <div class="drawing-tips">
-                <h3>🎨 Drawing Tips:</h3>
-                <ul>
-                    <li>Click and drag to draw with the pencil tool</li>
-                    <li>Use the Fill tool to color inside shapes - click inside any closed area!</li>
-                    <li>The Fill tool only fills the area you click, respecting boundaries</li>
-                    <li>Use the Eraser tool to remove parts of your drawing</li>
-                    <li>Choose different colors from the color picker</li>
-                    <li>Adjust brush size with the slider (1-30)</li>
-                    <li>Click "Clear Drawing" to start over</li>
-                    <li>Works on touch devices too!</li>
-                </ul>
+                <h3>🎨 Artist Tips:</h3>
+                <div class="tips-grid">
+                    <div class="tip-section">
+                        <h4>🖌️ Drawing Tips</h4>
+                        <ul>
+                            <li>Choose from Brushes: Pencil, Paint Brush, Marker, or Crayon</li>
+                            <li>Try different colors from the palette or use custom color picker</li>
+                            <li>Adjust brush size (1-50 pixels) and opacity (10-100%)</li>
+                            <li>Use smooth drawing mode for flowing curves</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tip-section">
+                        <h4>📐 Shape Tools</h4>
+                        <ul>
+                            <li>Click shapes (Lines, Circles, Rectangles, etc.) to draw perfect shapes</li>
+                            <li>Click and drag to make shapes bigger or smaller</li>
+                            <li>Try the Star and Heart shapes for fun!</li>
+                            <li>Shapes respect your current color and brush size</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tip-section">
+                        <h4>🎨 Special Tools</h4>
+                        <ul>
+                            <li>Fill Bucket: Click inside closed shapes to fill them</li>
+                            <li>Spray Paint: Creates realistic spray-paint effect</li>
+                            <li>Eraser: Remove parts of your drawing</li>
+                            <li>Text Tool: Add text to your artwork</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tip-section">
+                        <h4>📱 Mobile Tips</h4>
+                        <ul>
+                            <li>Works great on tablets and phones!</li>
+                            <li>Touch and drag to draw</li>
+                            <li>Big buttons for easy tool switching</li>
+                            <li>Canvas automatically adjusts to your screen size</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
