@@ -2600,20 +2600,66 @@ main {
         padding: 10px;
     }
     
-    .shapes-canvas {
+    .shapes-learning-container {
+        flex-direction: column;
+    }
+    
+    .shapes-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    
+    .shape-card {
+        padding: 10px;
+    }
+    
+    .shape-card h3 {
+        font-size: 1em;
+    }
+    
+    .shape-card p {
+        font-size: 0.8em;
+    }
+    
+    .drawing-area {
         width: 100%;
-        max-width: 100%;
-        height: 400px;
+        padding: 10px;
+    }
+    
+    .shapes-canvas {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 300px !important;
+        border: 2px solid #ddd;
+        display: block;
+        margin: 0 auto;
     }
     
     .shape-controls {
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 8px;
+        margin-top: 10px;
     }
     
     .shape-btn {
-        padding: 12px 16px;
-        font-size: 1em;
+        padding: 10px 12px;
+        font-size: 0.9em;
+        min-height: 44px;
+    }
+    
+    .color-palette {
+        margin-top: 15px;
+    }
+    
+    .color-options {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .color-option {
+        width: 30px;
+        height: 30px;
     }
     
     /* Colors */
@@ -2784,7 +2830,25 @@ main {
     }
     
     .shapes-canvas {
-        height: 300px;
+        height: 250px !important;
+        width: 100% !important;
+    }
+    
+    .shapes-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    
+    .shape-card {
+        padding: 8px;
+    }
+    
+    .shape-card h3 {
+        font-size: 0.9em;
+    }
+    
+    .shape-card p {
+        font-size: 0.7em;
     }
     
     .alphabet-grid {

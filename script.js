@@ -134,6 +134,62 @@ function setupMobileDrawing() {
     }, { passive: false });
 }
 
+// Mobile canvas resizing for shapes
+function setupMobileShapesCanvas() {
+    const canvas = document.getElementById('shapes-canvas');
+    if (!canvas) return;
+    
+    function resizeCanvas() {
+        const container = canvas.parentElement;
+        const containerWidth = container.clientWidth - 20; // Account for padding
+        
+        // Set canvas size based on screen width
+        if (window.innerWidth <= 480) {
+            // Small mobile
+            canvas.width = containerWidth;
+            canvas.height = 250;
+        } else if (window.innerWidth <= 768) {
+            // Medium mobile/tablet
+            canvas.width = containerWidth;
+            canvas.height = 300;
+        } else {
+            // Desktop
+            canvas.width = Math.min(800, containerWidth);
+            canvas.height = 500;
+        }
+        
+        // Redraw canvas with new dimensions
+        if (shapesCtx) {
+            // Set white background
+            shapesCtx.fillStyle = 'white';
+            shapesCtx.fillRect(0, 0, canvas.width, canvas.height);
+            shapesCtx.fillStyle = shapeColor;
+            
+            // Redraw all existing shapes
+            redrawCanvas();
+        }
+    }
+    
+    // Initial resize
+    resizeCanvas();
+    
+    // Resize on window resize
+    window.addEventListener('resize', resizeCanvas);
+    
+    // Prevent default touch behaviors
+    canvas.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+    }, { passive: false });
+    
+    canvas.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+    }, { passive: false });
+    
+    canvas.addEventListener('touchend', function(e) {
+        e.preventDefault();
+    }, { passive: false });
+}
+
 // Set up canvas
 if (ctx) {
     ctx.lineCap = 'round';
@@ -740,6 +796,21 @@ document.addEventListener('DOMContentLoaded', function() {
         shapesCtx.lineWidth = 3;
         shapesCtx.strokeStyle = shapeColor;
         shapesCtx.fillStyle = shapeColor;
+        
+        // Set initial canvas size based on screen size
+        const container = shapesCanvas.parentElement;
+        const containerWidth = container.clientWidth - 20;
+        
+        if (window.innerWidth <= 480) {
+            shapesCanvas.width = containerWidth;
+            shapesCanvas.height = 250;
+        } else if (window.innerWidth <= 768) {
+            shapesCanvas.width = containerWidth;
+            shapesCanvas.height = 300;
+        } else {
+            shapesCanvas.width = Math.min(800, containerWidth);
+            shapesCanvas.height = 500;
+        }
         
         // Set canvas background to white
         shapesCtx.fillStyle = 'white';
@@ -1890,6 +1961,9 @@ window.addEventListener('load', function() {
     
     // Initialize mobile drawing support
     setupMobileDrawing();
+    
+    // Initialize mobile shapes canvas support
+    setupMobileShapesCanvas();
     
     // Check if this is the first visit
     const hasVisited = localStorage.getItem('hasVisitedBacchoSite');
