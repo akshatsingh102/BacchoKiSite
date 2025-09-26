@@ -141,7 +141,7 @@ function setupMobileShapesCanvas() {
     
     function resizeCanvas() {
         const container = canvas.parentElement;
-        const containerWidth = container.clientWidth - 20; // Account for padding
+        const containerWidth = container.clientWidth - 40; // Account for padding and borders
         
         // Set canvas size based on screen width
         if (window.innerWidth <= 480) {
@@ -158,20 +158,25 @@ function setupMobileShapesCanvas() {
             canvas.height = 500;
         }
         
-        // Redraw canvas with new dimensions
-        if (shapesCtx) {
-            // Set white background
-            shapesCtx.fillStyle = 'white';
-            shapesCtx.fillRect(0, 0, canvas.width, canvas.height);
+        // Ensure context is available
+        if (!shapesCtx) {
+            shapesCtx = canvas.getContext('2d');
+            shapesCtx.lineWidth = 3;
+            shapesCtx.strokeStyle = shapeColor;
             shapesCtx.fillStyle = shapeColor;
-            
-            // Redraw all existing shapes
-            redrawCanvas();
         }
+        
+        // Set white background
+        shapesCtx.fillStyle = 'white';
+        shapesCtx.fillRect(0, 0, canvas.width, canvas.height);
+        shapesCtx.fillStyle = shapeColor;
+        
+        // Redraw all existing shapes
+        redrawCanvas();
     }
     
     // Initial resize
-    resizeCanvas();
+    setTimeout(resizeCanvas, 100); // Small delay to ensure DOM is ready
     
     // Resize on window resize
     window.addEventListener('resize', resizeCanvas);
@@ -683,14 +688,24 @@ function containsHindi(text) {
 function getBestVoice(language, gender) {
     const voices = speechSynthesis.getVoices();
     
+    // If voices aren't loaded yet, return null
+    if (voices.length === 0) {
+        return null;
+    }
+    
     // Filter voices by language
     const languageVoices = voices.filter(voice => {
         return voice.lang.startsWith(language);
     });
     
     if (languageVoices.length === 0) {
-        return null; // No voice available for this language
+        // For English content, try any English voice available
+        const anyEnglish = voices.filter(v => v.lang.startsWith('en'));
+        return anyEnglish.length > 0 ? anyEnglish[0] : null;
     }
+    
+    console.log('Available voices for', language + ':', languageVoices.map(v => v.name));
+    console.log('Looking for gender:', gender);
     
     // Prioritize melodious and kid-friendly voices
     const preferredVoices = {
@@ -713,21 +728,25 @@ function getBestVoice(language, gender) {
         const isPreferred = preferredNames.some(name => voiceName.includes(name.toLowerCase()));
         
         if (gender === 'male') {
-            return isPreferred || voiceName.includes('male') || voiceName.includes('man') || 
+            const isMale = isPreferred || voiceName.includes('male') || voiceName.includes('man') || 
                    voiceName.includes('david') || voiceName.includes('alex') ||
                    voiceName.includes('microsoft david') || voiceName.includes('daniel') ||
                    voiceName.includes('tom') || voiceName.includes('fred') ||
                    voiceName.includes('ralph') || voiceName.includes('bruce');
+            return isMale;
         } else {
-            return isPreferred || voiceName.includes('female') || voiceName.includes('woman') || 
+            const isFemale = isPreferred || voiceName.includes('female') || voiceName.includes('woman') || 
                    voiceName.includes('zira') || voiceName.includes('susan') ||
                    voiceName.includes('microsoft zira') || voiceName.includes('karen') ||
                    voiceName.includes('samantha') || voiceName.includes('veena') ||
                    voiceName.includes('fiona') || voiceName.includes('moira') ||
                    voiceName.includes('tessa') || voiceName.includes('priya') ||
                    voiceName.includes('swara');
+            return isFemale;
         }
     });
+    
+    console.log('Selected voices for gender', gender + ':', genderVoices.map(v => v.name));
     
     // Sort by preference (preferred voices first)
     genderVoices.sort((a, b) => {
@@ -742,7 +761,9 @@ function getBestVoice(language, gender) {
     });
     
     // Return the best matching voice, or fallback to any voice in the language
-    return genderVoices.length > 0 ? genderVoices[0] : languageVoices[0];
+    const selectedVoice = genderVoices.length > 0 ? genderVoices[0] : languageVoices[0];
+    console.log('Final voice selection:', selectedVoice ? selectedVoice.name : 'No voice found');
+    return selectedVoice;
 }
 
 // Add speech to alphabet letters
@@ -799,7 +820,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Set initial canvas size based on screen size
         const container = shapesCanvas.parentElement;
-        const containerWidth = container.clientWidth - 20;
+        const containerWidth = container.clientWidth - 40; // Account for padding and borders
         
         if (window.innerWidth <= 480) {
             shapesCanvas.width = containerWidth;
@@ -985,6 +1006,15 @@ function selectShape(shape) {
         `;
     }
     
+    // Ensure canvas is properly initialized and visible
+    if (shapesCanvas && shapesCtx) {
+        // Redraw canvas to ensure it's visible
+        shapesCtx.fillStyle = 'white';
+        shapesCtx.fillRect(0, 0, shapesCanvas.width, shapesCanvas.height);
+        shapesCtx.fillStyle = shapeColor;
+        redrawCanvas();
+    }
+    
     speakText(`Let's learn to draw a ${shape}! ${descriptions[shape]}`);
 }
 
@@ -1016,8 +1046,40 @@ function saveSettings() {
     // Save to localStorage
     localStorage.setItem('bacchoSettings', JSON.stringify(userSettings));
     
+    // Force voice refresh for immediate effect
+    forceVoiceRefresh();
+    
     // Show success message
     alert('Settings saved successfully! Your preferences will be applied to all listening features.');
+}
+
+function forceVoiceRefresh() {
+    // Stop any current speech
+    if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+    }
+    
+    // Wait for voices to be ready, then verify current setting works
+    function onVoicesLoaded() {
+        const testUtterance = new SpeechSynthesisUtterance('Test voice');
+        testUtterance.lang = userSettings.language === 'hi' ? 'hi-IN' : 'en-US';
+        
+        const voice = getBestVoice(userSettings.language, userSettings.voiceGender);
+        if (voice) {
+            testUtterance.voice = voice;
+            console.log('Selected voice:', voice.name, 'for gender:', userSettings.voiceGender);
+        }
+        
+        // Clean up
+        window.removeEventListener('voiceschanged', onVoicesLoaded);
+    }
+    
+    // Load voices and get available set
+    speechSynthesis.getVoices();
+    window.addEventListener('voiceschanged', onVoicesLoaded);
+    
+    // Also trigger immediately if voices are already loaded
+    setTimeout(onVoicesLoaded, 100);
 }
 
 function resetSettings() {
@@ -1106,12 +1168,12 @@ function displayVoices() {
 }
 
 function testEnglishVoice() {
-    const testText = "Hello! This is a test of the English voice. How does it sound?";
+    const testText = "Hello! This is a test of the English " + userSettings.voiceGender + " voice. How does it sound?";
     speakText(testText, 'en');
 }
 
 function testHindiVoice() {
-    const testText = "नमस्ते! यह हिंदी आवाज़ का परीक्षण है। यह कैसी लग रही है?";
+    const testText = "नमस्ते! यह हिंदी " + userSettings.voiceGender + " आवाज़ का परीक्षण है। यह कैसी लग रही है?";
     speakText(testText, 'hi');
 }
 
@@ -1965,6 +2027,36 @@ window.addEventListener('load', function() {
     // Initialize mobile shapes canvas support
     setupMobileShapesCanvas();
     
+    
+    // Add immediate voice gender change listener
+    const voiceGenderSelect = document.getElementById('voice-gender');
+    if (voiceGenderSelect) {
+        voiceGenderSelect.addEventListener('change', function() {
+            // Update global setting immediately on change
+            userSettings.voiceGender = this.value;
+            console.log('Voice gender changed to:', userSettings.voiceGender);
+        });
+    }
+    
+    // Force canvas visibility on shapes page
+    if (window.location.pathname.includes('shapes.html')) {
+        setTimeout(() => {
+            const canvas = document.getElementById('shapes-canvas');
+            if (canvas) {
+                canvas.style.display = 'block';
+                canvas.style.visibility = 'visible';
+                canvas.style.opacity = '1';
+                
+                // Force a redraw
+                if (shapesCtx) {
+                    shapesCtx.fillStyle = 'white';
+                    shapesCtx.fillRect(0, 0, canvas.width, canvas.height);
+                    shapesCtx.fillStyle = shapeColor;
+                }
+            }
+        }, 500);
+    }
+    
     // Check if this is the first visit
     const hasVisited = localStorage.getItem('hasVisitedBacchoSite');
     
@@ -2289,3 +2381,608 @@ function closeColorGame() {
     selectedColor = null;
     matchesFound = 0;
 }
+
+
+
+// Swipe Gesture Handling
+function handleTouchStart(e) {
+    swipeGesture.startX = e.touches[0].clientX;
+    swipeGesture.startY = e.touches[0].clientY;
+    swipeGesture.isSwiping = true;
+}
+
+function handleTouchMove(e) {
+    if (!swipeGesture.isSwiping) return;
+    
+    const currentX = e.touches[0].clientX;
+    const diffX = currentX - swipeGesture.startX;
+    
+    // If movement is horizontal and significant
+    if (Math.abs(diffX) > 50) {
+        e.preventDefault(); // Prevent page scroll
+        
+        // Show swipe indicator
+        showSwipeIndicator(diffX > 0 ? 'right' : 'left');
+    }
+}
+
+function handleTouchEnd(e) {
+    if (!swipeGesture.isSwiping) return;
+    
+    swipeGesture.isSwiping = false;
+    
+    const endX = e.changedTouches[0].clientX;
+    const diffX = endX - swipeGesture.startX;
+    
+    // Check for swipe navigation
+    if (Math.abs(diffX) > 100) {
+        if (diffX > 0) {
+            // Swipe right - go back
+            navigateBack();
+        } else {
+            // Swipe left - go forward
+            navigateForward();
+        }
+    }
+    
+    hideSwipeIndicator();
+}
+
+function navigateBack() {
+    const currentPage = window.location.pathname.split('/').pop();
+    const pages = ['index.html', 'calculator.html', 'drawing.html', 'poems.html', 
+                   'alphabets.html', 'stories.html', 'tenali-rama.html', 
+                   'shapes.html', 'colors.html', 'maths.html', 
+                   'child-registration.html', 'heritage.html', 'settings.html'];
+    
+    const currentIndex = pages.indexOf(currentPage);
+    if (currentIndex > 0) {
+        window.location.href = pages[currentIndex - 1];
+        addProgress('navigation', 1);
+    }
+    
+    speakText('Going back...');
+}
+
+function navigateForward() {
+    const currentPage = window.location.pathname.split('/').pop();
+    const pages = ['index.html', 'calculator.html', 'drawing.html', 'poems.html', 
+                   'alphabets.html', 'stories.html', 'tenali-rama.html', 
+                   'shapes.html', 'colors.html', 'maths.html', 
+                   'child-registration.html', 'heritage.html', 'settings.html'];
+    
+    const currentIndex = pages.indexOf(currentPage);
+    if (currentIndex < pages.length - 1) {
+        window.location.href = pages[currentIndex + 1];
+        addProgress('navigation', 1);
+    }
+    
+    speakText('Going forward...');
+}
+
+function showSwipeIndicator(direction) {
+    let indicator = document.getElementById('swipe-indicator');
+    if (!indicator) {
+        indicator = document.createElement('div');
+        indicator.id = 'swipe-indicator';
+        indicator.className = 'swipe-indicator';
+        document.body.appendChild(indicator);
+    }
+    
+    indicator.innerHTML = direction === 'left' ? '⏭️ Next' : '⏮️ Back';
+    indicator.style.right = direction === 'left' ? '20px' : 'auto';
+    indicator.style.left = direction === 'right' ? '20px' : 'auto';
+    indicator.style.display = 'block';
+    
+    setTimeout(() => {
+        hideSwipeIndicator();
+    }, 1000);
+}
+
+function hideSwipeIndicator() {
+    const indicator = document.getElementById('swipe-indicator');
+    if (indicator) {
+        indicator.style.display = 'none';
+    }
+}
+
+// Touch Animations
+function addTouchAnimations() {
+    const clickableElements = document.querySelectorAll('button, a, .feature-card, .animal-card, .poem, .story, .shape-card, .color-control, .nav-link');
+    
+    clickableElements.forEach(element => {
+        element.addEventListener('touchstart', function() {
+            this.classList.add('touch-animation');
+        });
+        
+        element.addEventListener('touchend', function() {
+            setTimeout(() => {
+                this.classList.remove('touch-animation');
+            }, 100);
+        });
+    });
+}
+
+// Voice Commands
+function setupVoiceCommands() {
+    // Listen for voice commands
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+        
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.lang = userSettings.language === 'hi' ? 'hi-IN' : 'en-US';
+        
+        let isListening = false;
+        
+        recognition.onstart = function() {
+            isListening = true;
+            showListeningIndicator();
+        };
+        
+        recognition.onend = function() {
+            isListening = false;
+            hideListeningIndicator();
+        };
+        
+        recognition.onresult = function(event) {
+            let transcript = '';
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                if (event.results[i].isFinal) {
+                    transcript += event.results[i][0].transcript.toLowerCase();
+                }
+            }
+            
+            if (transcript) {
+                handleVoiceCommand(transcript);
+            }
+        };
+        
+        // Start listening on first touch
+        let hasStarted = false;
+        document.addEventListener('touchstart', () => {
+            if (!hasStarted && !isListening) {
+                hasStarted = true;
+                recognition.start();
+            }
+        });
+        
+        // Add voice command overlay
+        setTimeout(() => {
+            const voiceOverlay = document.createElement('div');
+            voiceOverlay.id = 'voice-overlay';
+            voiceOverlay.innerHTML = `
+                <button id="start-listening" class="voice-btn">🎤 Hey Kid, say something!</button>
+                <button id="show-progress" class="voice-btn" style="margin-left: 5px;">📊 Progress</button>
+            `;
+            voiceOverlay.style.cssText = `
+                position: fixed; bottom: 20px; right: 20px; z-index: 1000;
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                padding: 15px; border-radius: 25px; color: white;
+            `;
+            document.body.appendChild(voiceOverlay);
+            
+            // Add progress dashboard toggle
+            document.getElementById('show-progress').addEventListener('click', toggleProgressDashboard);
+        }, 1000);
+    }
+}
+
+function handleVoiceCommand(transcript) {
+    // Enhanced voice commands
+    if (transcript.includes('hey kid') || transcript.includes('online')){
+        speakText('Hello! I am here! How can I help you today?');
+        return;
+    }
+    
+    if (transcript.includes('read story') || transcript.includes('tell story')) {
+        const storyButtons = document.querySelectorAll('[onclick*="speakStory"]');
+        if (storyButtons.length > 0) {
+            const randomStory = storyButtons[Math.floor(Math.random() * storyButtons.length)];
+            randomStory.click();
+            addProgress('voice_command', 1);
+        }
+        return;
+    }
+    
+    if (transcript.includes('read poem') || transcript.includes('tell poem')) {
+        const poemButtons = document.querySelectorAll('[onclick*="speakPoem"]');
+        if (poemButtons.length > 0) {
+            const randomPoem = poemButtons[Math.floor(Math.random() * poemButtons.length)];
+            randomPoem.click();
+            addProgress('voice_command', 1);
+        }
+        return;
+    }
+    
+    if (transcript.includes('help') || transcript.includes('what can you do')) {
+        speakText('I can help you learn! Say "read story" to hear a story, "read poem" for a poem, "draw something" for art, or just ask me anything!');
+        return;
+    }
+    
+    if (transcript.includes('change activity') || transcript.includes('new activity')) {
+        changeActivityWithShake();
+        return;
+    }
+    
+    // Record the interaction
+    addProgress('voice_commands_used', 1);
+}
+
+function showListeningIndicator() {
+    let indicator = document.getElementById('listening-indicator');
+    if (!indicator) {
+        indicator = document.createElement('div');
+        indicator.id = 'listening-indicator';
+        indicator.innerHTML = '🎤 Listening...';
+        indicator.style.cssText = `
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: white; padding: 10px 20px; border-radius: 20px;
+            z-index: 1000; font-weight: bold;
+        `;
+        document.body.appendChild(indicator);
+    }
+    
+    indicator.style.display = 'block';
+}
+
+function hideListeningIndicator() {
+    const indicator = document.getElementById('listening-indicator');
+    if (indicator) {
+        indicator.style.display = 'none';
+    }
+}
+
+// Shake Detection
+function setupShakeDetection() {
+    if (navigator.accelerometer) {
+        navigator.accelerometer.watchPosition(onAccelerometerChange, onError, { frequency: 200 });
+    } else {
+        // Fallback for devices without accelerometer API
+        setupBasicShakeDetection();
+    }
+}
+
+function onAccelerometerChange(acceleration) {
+    const x = acceleration.x;
+    const y = acceleration.y;
+    const z = acceleration.z;
+    
+    // Detect shake
+    if (Math.abs(x) > 15 || Math.abs(y) > 15 || Math.abs(z) > 15) {
+        changeActivityWithShake();
+    }
+}
+
+function setupBasicShakeDetection() {
+    let lastShake = 0;
+    
+    document.addEventListener('devicemotion', function(event) {
+        const acceleration = event.accelerationIncludingGravity;
+        const x = acceleration.x;
+        const y = acceleration.y;
+        const z = acceleration.z;
+        
+        const magnitude = Math.sqrt(x*x + y*y + z*z);
+        const now = Date.now();
+        
+        if (magnitude > 20 && now - lastShake > 1000) {
+            lastShake = now;
+            changeActivityWithShake();
+        }
+    });
+}
+
+function changeActivityWithShake() {
+    const activities = ['drawing.html', 'poems.html', 'stories.html', 'colors.html', 'shapes.html', 'maths.html'];
+    const randomActivity = activities[Math.floor(Math.random() * activities.length)];
+    
+    speakText('Shake detected! Let\'s try something new!');
+    showAchievementToast('🔄 New Activity Started!');
+    
+    setTimeout(() => {
+        window.location.href = randomActivity;
+    }, 1500);
+    
+    addProgress('shake_detection', 1);
+}
+
+// Smart Learning Features
+function loadUserProgress() {
+    const saved = localStorage.getItem('bacchoProgress');
+    if (saved) {
+        currentProgress = JSON.parse(saved);
+        displayProgress();
+    }
+}
+
+function saveUserProgress() {
+    localStorage.setItem('bacchoProgress', JSON.stringify(currentProgress));
+}
+
+function setupProgressTracking() {
+    // Track page visits
+    const currentPage = window.location.pathname.split('/').pop();
+    addProgress('pages_visited', 1, currentPage);
+    
+    // Track interactions
+    document.addEventListener('click', (e) => {
+        if (e.target.hasAttribute('onclick') || e.target.closest('a')) {
+            addProgress('clicks', 1);
+        }
+    });
+    
+    // Track time on page
+    const startTime = Date.now();
+    window.addEventListener('beforeunload', () => {
+        const timeSpent = Date.now() - startTime;
+        addProgress('time_spent', Math.floor(timeSpent / 60000), currentPage); // minutes
+    });
+}
+
+function addProgress(type, amount, detail = null) {
+    if (!currentProgress[type]) {
+        currentProgress[type] = (typeof amount === 'number') ? 0 : {};
+    }
+    
+    if (typeof amount === 'number') {
+        currentProgress[type] += amount;
+    } else {
+        currentProgress[type] = { ...currentProgress[type], ...amount };
+    }
+    
+    // Check for level up
+    checkLevelUp();
+    
+    // Check for badges
+    checkForBadges(type, detail);
+    
+    // Save progress
+    saveUserProgress();
+    displayProgress();
+}
+
+function checkLevelUp() {
+    const totalInteractions = (currentProgress.clicks || 0) + (currentProgress.voice_commands_used || 0) + 
+                             (currentProgress.pages_visited || 0) + (currentProgress.shake_detection || 0);
+    
+    const newLevel = Math.floor(totalInteractions / 50) + 1;
+    if (newLevel > currentProgress.currentLevel) {
+        currentProgress.currentLevel = newLevel;
+        showAchievementToast(`🌟 Level Up! Now you're Level ${newLevel}!`);
+        speakText(`Congratulations! You've reached level ${newLevel}!");
+        addProgress('level_ups', 1);
+    }
+}
+
+function checkForBadges(type, detail) {
+    const badges = [];
+    
+    // Badge conditions
+    if (currentProgress.clicks > 0 && !currentProgress.badges.includes('first_click')) {
+        badges.push({ id: 'first_click', name: '🎯 First Click', description: 'You discovered clicking!' });
+    }
+    
+    if (currentProgress.pages_visited > 10 && !currentProgress.badges.includes('explorer')) {
+        badges.push({ id: 'explorer', name: '🗺️ Explorer', description: 'You visited 10 pages!' });
+    }
+    
+    if (currentProgress.shake_detection > 5 && !currentProgress.badges.includes('shaker')) {
+        badges.push({ id: 'shaker', name: '📱 Shaker', description: 'You shook it 5 times!' });
+    }
+    
+    if (currentProgress.level_ups > 1 && !currentProgress.badges.includes('level_master')) {
+        badges.push({ id: 'level_master', name: '⭐ Level Master', description: 'Multiple level ups!' });
+    }
+    
+    if (type === 'voice_commands_used' && currentProgress.voice_commands_used > 2 && !currentProgress.badges.includes('talkative')) {
+        badges.push({ id: 'talkative', name: '🗣️ Talkative', description: 'Used voice commands 3 times!' });
+    }
+    
+    badges.forEach(badge => {
+        if (!currentProgress.badges.includes(badge.id)) {
+            currentProgress.badges.push(badge.id);
+            showBadgeEarned(badge);
+        }
+    });
+}
+
+function showBadgeEarned(badge) {
+    showAchievementToast(`🏆 New Badge: ${badge.name}!`);
+    speakText(`Congratulations! You earned the ${badge.name} badge! ${badge.description}`);
+}
+
+function showAchievementToast(message) {
+    let toast = document.getElementById('achievement-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'achievement-toast';
+        toast.className = 'achievement-toast';
+        document.body.appendChild(toast);
+    }
+    
+    toast.textContent = message;
+    toast.style.display = 'block';
+    
+    setTimeout(() => {
+        toast.style.display = 'none';
+    }, 3000);
+}
+
+function displayProgress() {
+    // Display level indicator
+    let levelIndicator = document.getElementById('level-indicator');
+    if (!levelIndicator) {
+        levelIndicator = document.createElement('div');
+        levelIndicator.id = 'level-indicator';
+        levelIndicator.className = 'level-indicator';
+        document.body.appendChild(levelIndicator);
+    }
+    
+    levelIndicator.innerHTML = `⭐ Level ${currentProgress.currentLevel} | ${currentProgress.totalStars || 0} Stars`;
+    levelIndicator.style.display = 'block';
+    
+    // Clean up on page unload
+    window.addEventListener('beforeunload', () => {
+        levelIndicator.style.display = 'none';
+    });
+}
+
+function setupRewardSystem() {
+    // Generate stars for activities
+    setTimeout(() => {
+        const currentPage = window.location.pathname.split('/').pop();
+        const activityStarCount = {
+            'calculator.html': 2,
+            'drawing.html': 3,
+            'poems.html': 2,
+            'alphabets.html': 2,
+            'stories.html': 3,
+            'shapes.html': 2,
+            'colors.html': 3,
+            'maths.html': 2,
+            'heritage.html': 4
+        };
+        
+        const stars = activityStarCount[currentPage] || 1;
+        currentProgress.totalStars = (currentProgress.totalStars || 0) + stars;
+        
+        showAchievementToast(`⭐ You earned ${stars} star${stars > 1 ? 's' : ''}!`);
+        saveUserProgress();
+    }, 2000);
+    
+    // Add recommendation system
+    setTimeout(() => {
+        showPersonalRecommendations();
+    }, 5000);
+}
+
+function showPersonalRecommendations() {
+    if (currentProgress.pages_visited > 5) {
+        const recommendations = generateRecommendations();
+        if (recommendations.length > 0) {
+            const rec = recommendations[Math.floor(Math.random() * recommendations.length)];
+            speakText(`I recommend trying ${rec.activity} next! ${rec.message}`);
+            showAchievementToast(`💡 ${rec.activity}: ${rec.message}`);
+        }
+    }
+}
+
+function generateRecommendations() {
+    const activities = [
+        { activity: 'Drawing', page: 'drawing.html', message: 'You could become a great artist!' },
+        { activity: 'Maths', page: 'maths.html', message: 'Math is super fun and useful!' },
+        { activity: 'Poems', page: 'poems.html', message: 'Hear beautiful poetry and stories!' },
+        { activity: 'Shapes', page: 'shapes.html', message: 'Learn about shapes and geometry!' },
+        { activity: 'Colors', page: 'colors.html', message: 'Discover the magical world of colors!' },
+        { activity: 'Heritage', page: 'heritage.html', message: 'Learn about your beautiful country!' }
+    ];
+    
+    return activities.filter(activity => {
+        const visitedPages = currentProgress.completedActivities || [];
+        return !visitedPages.includes(activity.page);
+    });
+}
+
+function toggleProgressDashboard() {
+    let dashboard = document.getElementById('smart-learning-dashboard');
+    if (!dashboard) {
+        dashboard = document.createElement('div');
+        dashboard.id = 'smart-learning-dashboard';
+        dashboard.className = 'smart-learning-dashboard';
+        
+        const currentLevel = currentProgress.currentLevel || 1;
+        const totalStars = currentProgress.totalStars || 0;
+        const badges = currentProgress.badges || [];
+        const clicks = currentProgress.clicks || 0;
+        const pagesVisited = currentProgress.pages_visited || 0;
+        const voiceCommands = currentProgress.voice_commands_used || 0;
+        
+        dashboard.innerHTML = `
+            <h3 style="margin-bottom: 15px; color: #333; text-align: center;">📊 Your Progress</h3>
+            <div class="dashboard-section">
+                <div class="dashboard-title">Current Level</div>
+                <div class="dashboard-value">⭐ Level ${currentLevel}</div>
+            </div>
+            <div class="dashboard-section">
+                <div class="dashboard-title">Stars Earned</div>
+                <div class="dashboard-value">${totalStars} Stars</div>
+            </div>
+            <div class="dashboard-section">
+                <div class="dashboard-title">Pages Visited</div>
+                <div class="dashboard-value">${pagesVisited} Pages</div>
+            </div>
+            <div class="dashboard-section">
+                <div class="dashboard-title">Interactions</div>
+                <div class="dashboard-value">${clicks} Clicks, ${voiceCommands} Voice Commands</div>
+            </div>
+            ${badges.length > 0 ? `
+                <div class="dashboard-section">
+                    <div class="dashboard-title">Badges Earned</div>
+                    <div class="dashboard-badges">
+                        ${badges.map(badgeId => createBadgeDisplay(badgeId)).join('')}
+                    </div>
+                </div>
+            ` : ''}
+            <div style="text-align: center; margin-top: 15px;">
+                <button id="close-dashboard" style="
+                    background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+                    color: white;
+                    border: none;
+                    padding: 8px 20px;
+                    border-radius: 20px;
+                    font-weight: bold;
+                    cursor: pointer;
+                ">✕ Close</button>
+            </div>
+        `;
+        
+        document.body.appendChild(dashboard);
+        
+        // Add close functionality
+        document.getElementById('close-dashboard').addEventListener('click', () => {
+            dashboard.style.display = 'none';
+        });
+    }
+    
+    dashboard.style.display = dashboard.style.display === 'none' ? 'block' : 'none';
+    
+    if (dashboard.style.display === 'block') {
+        dashboard.classList.add('active');
+        speakText('Here is your learning progress! You are doing amazing!');
+    }
+}
+
+function createBadgeDisplay(badgeId) {
+    const badgeMap = {
+        'first_click': '🎯 First Click',
+        'explorer': '🗺️ Explorer',
+        'shaker': '📱 Shaker',
+        'level_master': '⭐ Level Master',
+        'talkative': '🗣️ Talkative'
+    };
+    
+    return `<span class="badge">${badgeMap[badgeId] || badgeId}</span>`;
+}
+
+function onError(error) {
+    console.log('Accelerometer error:', error);
+    // Fallback to vibration-based shake detection
+    if (navigator.vibrate) {
+        let vibrationCount = 0;
+        const vibrationInterval = setInterval(() => {
+            if (navigator.vibrate) {
+                navigator.vibrate(50);
+                vibrationCount++;
+                if (vibrationCount > 10) {
+                    clearInterval(vibrationInterval);
+                }
+            }
+        }, 500);
+        
+        changeActivityWithShake();
+    }
+}
+
